@@ -3,189 +3,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M Zaky Mahid | Visual Designer Portfolio</title>
+    <title>M Zaky Mahid | Cinematic Portfolio</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Montserrat:wght@200;400;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&family=Syne:wght@800&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         :root {
-            --accent: #3b82f6;
-            --bg-dark: #0a0a0a;
+            --gold: #c5a059;
+            --bg-deep: #050505;
         }
 
-        * {
-            margin: 0; padding: 0; box-sizing: border-box;
-            cursor: none; /* Menyembunyikan kursor asli */
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
 
         body {
-            background-color: var(--bg-dark);
-            color: #fff;
-            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-deep);
+            color: #e0e0e0;
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
         }
 
-        /* --- BACKGROUND SYSTEM --- */
-        .damask-bg {
+        /* --- CINEMATIC DAMASK SYSTEM --- */
+        .damask-cinema {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url('https://www.transparenttextures.com/patterns/damask-wallpaper.png');
-            opacity: 0.12; /* Kepekatan pola damask */
+            opacity: 0.08;
             z-index: -2;
             pointer-events: none;
-            animation: bgMove 100s linear infinite;
+            filter: contrast(120%) brightness(50%);
+            animation: slowMove 150s linear infinite;
         }
 
-        @keyframes bgMove {
+        @keyframes slowMove {
             from { background-position: 0 0; }
             to { background-position: 1000px 1000px; }
         }
 
-        .vignette {
+        .film-grain {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.8) 100%);
-            z-index: -1;
-            pointer-events: none;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05; pointer-events: none; z-index: 100;
         }
 
-        /* --- CUSTOM CURSOR --- */
-        #cursor {
-            position: fixed; width: 8px; height: 8px; background: #fff;
-            border-radius: 50%; pointer-events: none; z-index: 9999;
-            mix-blend-mode: difference;
-        }
-        #cursor-outline {
-            position: fixed; width: 40px; height: 40px; border: 1px solid rgba(255,255,255,0.5);
-            border-radius: 50%; pointer-events: none; z-index: 9998;
-            transition: transform 0.15s ease-out;
+        .cinematic-vignette {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.95) 100%);
+            z-index: -1; pointer-events: none;
         }
 
-        /* --- TYPOGRAPHY & LAYOUT --- */
+        /* --- TYPOGRAPHY --- */
+        .font-aesthetic { font-family: 'Cormorant Garamond', serif; }
+        
         .hero-title {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(4rem, 15vw, 12rem);
-            line-height: 0.8;
-            letter-spacing: -0.05em;
+            font-size: clamp(3rem, 12vw, 10rem);
+            line-height: 0.9;
+            font-weight: 300;
+            letter-spacing: -2px;
         }
 
-        .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
+        .text-reveal {
+            overflow: hidden;
+            display: inline-block;
         }
 
-        .glass-card:hover {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.07);
+        /* --- CURSOR --- */
+        #cursor {
+            width: 10px; height: 10px; background: var(--gold);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9999; mix-blend-mode: difference;
+        }
+        #cursor-follower {
+            width: 50px; height: 50px; border: 1px solid var(--gold);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 9998; transition: transform 0.3s ease;
         }
 
-        .marquee {
-            white-space: nowrap; overflow: hidden;
-            padding: 20px 0; background: #fff; color: #000;
+        /* --- PROJECT CARDS --- */
+        .project-card {
+            position: relative; overflow: hidden;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 4rem 0;
+            transition: all 0.5s ease;
         }
-        .marquee-inner {
-            display: inline-block; animation: marquee 20s linear infinite;
-            font-weight: 800; text-transform: uppercase; font-size: 1.5rem;
+
+        .project-card:hover {
+            border-bottom: 1px solid var(--gold);
         }
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+
+        .project-image-float {
+            position: fixed; width: 400px; height: 250px;
+            pointer-events: none; opacity: 0; z-index: 10;
+            transform: translate(-50%, -50%) scale(0.8);
+            transition: opacity 0.3s, transform 0.5s;
+            overflow: hidden; border-radius: 4px;
         }
     </style>
 </head>
 <body>
 
-    <div class="damask-bg"></div>
-    <div class="vignette"></div>
+    <div class="damask-cinema"></div>
+    <div class="cinematic-vignette"></div>
+    <div class="film-grain"></div>
     <div id="cursor"></div>
-    <div id="cursor-outline"></div>
+    <div id="cursor-follower"></div>
 
-    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference">
-        <div class="font-bold text-2xl tracking-tighter">ZKY.</div>
-        <div class="hidden md:flex gap-10 text-xs tracking-widest uppercase">
-            <a href="#work" class="hover:text-blue-500 transition">Works</a>
-            <a href="#about" class="hover:text-blue-500 transition">About</a>
-            <a href="mailto:hello@zaky.com" class="hover:text-blue-500 transition">Contact</a>
+    <nav class="fixed top-0 w-full p-10 flex justify-between items-center z-50">
+        <div class="font-aesthetic italic text-3xl font-semibold tracking-tighter">ZM<span class="text-[#c5a059]">.</span></div>
+        <div class="flex gap-8 text-[9px] tracking-[0.6em] uppercase opacity-60">
+            <a href="#work" class="hover:text-[#c5a059] transition">Portfolio</a>
+            <a href="#about" class="hover:text-[#c5a059] transition">Identity</a>
+            <a href="mailto:hello@zaky.id" class="hover:text-[#c5a059] transition">Inquiry</a>
         </div>
     </nav>
 
-    <section class="min-h-screen flex flex-col justify-center px-8 md:px-20 relative">
-        <p class="text-blue-500 font-bold tracking-[0.5em] mb-4 uppercase text-xs" data-aos="fade-right">
-            Multimedia Artist & Student
-        </p>
-        <h1 class="hero-title mb-8" data-aos="zoom-in" data-aos-delay="200">
-            ZAKY <br> <span class="text-blue-600">MAHID</span>
+    <section class="h-screen flex flex-col justify-center items-center text-center px-6">
+        <span class="font-aesthetic italic text-xl md:text-2xl mb-4 opacity-50" data-aos="fade-up">Visual Storyteller & Multimedia Designer</span>
+        
+        <h1 class="hero-title font-aesthetic mb-8" data-aos="fade-up" data-aos-delay="200">
+            M. ZAKY <br> <span class="italic font-light">MAHID</span>
         </h1>
-        <div class="flex gap-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="h-[1px] w-20 bg-white self-center"></div>
-            <p class="max-w-md text-gray-400 text-sm leading-relaxed">
-                Fokus pada manipulasi visual, motion design, dan pengembangan pengalaman digital yang imersif.
-            </p>
+
+        <div class="w-[1px] h-32 bg-gradient-to-b from-[#c5a059] to-transparent mt-10" data-aos="zoom-in" data-aos-delay="500"></div>
+    </section>
+
+    <section id="work" class="py-40 px-6 md:px-40">
+        <h2 class="font-aesthetic text-6xl italic mb-20 text-center md:text-left">Selected Works</h2>
+        
+        <div class="flex flex-col">
+            <div class="project-card group" data-img="https://images.unsplash.com/photo-1492691523567-6170c3605d32?auto=format&fit=crop&q=80&w=1000">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <span class="text-xs opacity-40 uppercase tracking-widest font-bold">01 / Motion</span>
+                    <h3 class="font-aesthetic text-5xl md:text-7xl group-hover:italic transition-all duration-500">The Silent Symphony</h3>
+                    <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">View Details</p>
+                </div>
+            </div>
+
+            <div class="project-card group" data-img="https://images.unsplash.com/photo-1574267432553-4b4628081c31?auto=format&fit=crop&q=80&w=1000">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <span class="text-xs opacity-40 uppercase tracking-widest font-bold">02 / Identity</span>
+                    <h3 class="font-aesthetic text-5xl md:text-7xl group-hover:italic transition-all duration-500">Brutalism Reborn</h3>
+                    <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">View Details</p>
+                </div>
+            </div>
+
+            <div class="project-card group" data-img="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&q=80&w=1000">
+                <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <span class="text-xs opacity-40 uppercase tracking-widest font-bold">03 / Art</span>
+                    <h3 class="font-aesthetic text-5xl md:text-7xl group-hover:italic transition-all duration-500">Digital Alchemy</h3>
+                    <p class="text-[10px] tracking-[0.4em] uppercase opacity-40 group-hover:opacity-100 transition-opacity">View Details</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <div class="marquee">
-        <div class="marquee-inner">
-            VISUAL DESIGN • MOTION GRAPHIC • UI/UX EXPLORATION • BRANDING • VIDEO EDITING • VISUAL DESIGN • MOTION GRAPHIC • UI/UX EXPLORATION • BRANDING • VIDEO EDITING • 
-        </div>
+    <div id="project-preview" class="project-image-float">
+        <img src="" alt="Preview" id="preview-img" class="w-full h-full object-cover">
     </div>
 
-    <section id="work" class="py-32 px-8 md:px-20">
-        <h2 class="text-5xl font-bold mb-20 tracking-tighter" data-aos="fade-up">Selected Works</h2>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="glass-card p-4 rounded-2xl group" data-aos="fade-up">
-                <div class="aspect-video bg-zinc-900 rounded-xl overflow-hidden mb-6">
-                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&q=80&w=800" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" alt="Work">
-                </div>
-                <h3 class="text-2xl font-bold mb-2">Cybernetic Abstract</h3>
-                <p class="text-gray-500 text-sm italic uppercase tracking-widest">Motion Design / 2024</p>
-            </div>
-
-            <div class="glass-card p-4 rounded-2xl group" data-aos="fade-up" data-aos-delay="200">
-                <div class="aspect-video bg-zinc-900 rounded-xl overflow-hidden mb-6">
-                    <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800" 
-                         class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-700" alt="Work">
-                </div>
-                <h3 class="text-2xl font-bold mb-2">Minimalist Identity</h3>
-                <p class="text-gray-500 text-sm italic uppercase tracking-widest">Branding / 2023</p>
-            </div>
-        </div>
-    </section>
+    <footer class="py-40 text-center border-t border-white/5">
+        <h2 class="font-aesthetic text-5xl italic mb-10">Let's create something timeless.</h2>
+        <a href="mailto:hello@zaky.id" class="text-xs tracking-[0.8em] uppercase border-b border-[#c5a059] pb-4 hover:text-[#c5a059] transition-colors">hello@muhzakymah.id</a>
+    </footer>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
+        AOS.init({ duration: 1500 });
 
-        // Custom Cursor Logic
+        // Cursor Logic
         const cursor = document.getElementById('cursor');
-        const outline = document.getElementById('cursor-outline');
+        const follower = document.getElementById('cursor-follower');
+        const preview = document.getElementById('project-preview');
+        const previewImg = document.getElementById('preview-img');
 
-        document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX + 'px';
-            cursor.style.top = e.clientY + 'px';
-            
-            // Outline follow dengan sedikit delay (efek smooth)
-            setTimeout(() => {
-                outline.style.left = e.clientX - 16 + 'px';
-                outline.style.top = e.clientY - 16 + 'px';
-            }, 50);
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1 });
+            gsap.to(follower, { x: e.clientX - 25, y: e.clientY - 25, duration: 0.3 });
+            gsap.to(preview, { x: e.clientX, y: e.clientY, duration: 0.6 });
         });
 
-        // Hover Effect untuk Kursor
-        const links = document.querySelectorAll('a, .glass-card');
-        links.forEach(link => {
-            link.addEventListener('mouseenter', () => {
-                outline.style.transform = 'scale(2)';
-                outline.style.backgroundColor = 'rgba(255,255,255,0.1)';
+        // Cinematic Project Preview Logic
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const imgUrl = card.getAttribute('data-img');
+                previewImg.src = imgUrl;
+                gsap.to(preview, { opacity: 1, scale: 1, duration: 0.4 });
+                gsap.to(follower, { scale: 1.5, borderColor: '#fff', duration: 0.3 });
             });
-            link.addEventListener('mouseleave', () => {
-                outline.style.transform = 'scale(1)';
-                outline.style.backgroundColor = 'transparent';
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(preview, { opacity: 0, scale: 0.8, duration: 0.4 });
+                gsap.to(follower, { scale: 1, borderColor: '#c5a059', duration: 0.3 });
             });
         });
     </script>
