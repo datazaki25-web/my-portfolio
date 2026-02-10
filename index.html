@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhzakymah | Digital Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Agar scroll lebih halus */
+        html { scroll-behavior: smooth; }
+        .video-bg {
+            position: fixed; right: 0; bottom: 0;
+            min-width: 100%; min-height: 100%;
+            z-index: -1; object-fit: cover;
+            filter: brightness(0.5);
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans">
+
+    <video autoplay muted loop playsinline class="video-bg">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-lines-14002-large.mp4" type="video/mp4">
+    </video>
+
+    <nav class="p-8 flex justify-between items-center fixed w-full z-50">
+        <div class="text-2xl font-black tracking-tighter">M.Z.M</div>
+        <div class="space-x-8 text-sm uppercase tracking-widest">
+            <a href="#about" class="hover:text-blue-400 transition">About</a>
+            <a href="#work" class="hover:text-blue-400 transition">Work</a>
+        </div>
+    </nav>
+
+    <section class="h-screen flex flex-col items-center justify-center">
+        <h1 class="text-7xl md:text-9xl font-bold italic tracking-tighter" data-aos="fade-down" data-aos-duration="1500">
+            MUHZAKYMAH
+        </h1>
+        <p class="mt-4 text-blue-400 tracking-[1em] uppercase text-xs md:text-sm" data-aos="fade-up" data-aos-delay="500">
+            Visual Storyteller & Developer
+        </p>
+    </section>
+
+    <section id="work" class="py-32 px-10 bg-white text-black min-h-screen">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-black mb-16 tracking-tighter" data-aos="fade-right">SELECTED WORK</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="group overflow-hidden bg-gray-100 aspect-video relative" data-aos="zoom-in">
+                    <div class="absolute inset-0 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-center text-white">
+                        <span class="text-xl font-bold">Lihat Proyek</span>
+                    </div>
+                </div>
+                <div class="group overflow-hidden bg-gray-100 aspect-video relative" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="absolute inset-0 bg-black translate-y-full group-hover:translate-y-0 transition-transform duration-500 flex items-center justify-center text-white">
+                        <span class="text-xl font-bold">Lihat Proyek</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script> AOS.init(); </script>
+</body>
+</html>
