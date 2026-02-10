@@ -3,128 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M Zaky Mahid | Creative Technologist Portfolio</title>
+    <title>M Zaky Mahid | Creative Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;800&display=swap');
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #0a0a0a; color: white; margin: 0; }
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background: #050505; color: white; scroll-behavior: smooth; }
         
         .video-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; object-fit: cover; filter: brightness(0.3);
+            z-index: -1; object-fit: cover; filter: brightness(0.25) contrast(1.1);
         }
 
         .text-gradient {
-            background: linear-gradient(to bottom, #ffffff, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background: linear-gradient(135deg, #ffffff 30%, #3b82f6 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .dead-center {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%, -50%); width: 100%; text-align: center;
+        .project-card {
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
+        
+        .project-card:hover { transform: translateY(-10px); }
 
-        .work-card:hover img { transform: scale(1.05); }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
     </style>
 </head>
-<body>
+<body class="overflow-x-hidden">
 
     <video autoplay muted loop playsinline class="video-bg">
         <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-connection-lines-14002-large.mp4" type="video/mp4">
     </video>
 
-    <nav class="fixed top-0 left-0 w-full p-6 md:p-10 flex justify-between items-center z-[100]">
-        <div class="text-xl font-extrabold tracking-tighter border-b-2 border-blue-500">Portofolio</div>
-        <div class="glass px-6 py-2 rounded-full space-x-6 text-[10px] uppercase tracking-[0.2em]">
-            <a href="#home" class="hover:text-blue-400 transition">Home</a>
-            <a href="#about" class="hover:text-blue-400 transition">About</a>
-            <a href="#work" class="hover:text-blue-400 transition">Works</a>
+    <nav class="fixed top-0 w-full z-[100] glass-nav">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="text-2xl font-black tracking-tighter">MZM<span class="text-blue-500">.</span></div>
+            <div class="hidden md:flex space-x-10 text-[10px] font-bold uppercase tracking-[0.3em]">
+                <a href="#home" class="hover:text-blue-500 transition">Start</a>
+                <a href="#about" class="hover:text-blue-500 transition">Story</a>
+                <a href="#work" class="hover:text-blue-500 transition">Works</a>
+                <a href="mailto:muhzakymah@gmail.com" class="px-4 py-2 border border-blue-500 rounded-full hover:bg-blue-500 hover:text-white transition">Hire Me</a>
+            </div>
+            <div class="md:hidden text-blue-500">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </div>
         </div>
     </nav>
 
-    <section id="home" class="relative h-screen w-full">
-        <div class="dead-center px-4">
-            <h2 class="text-blue-400 text-[10px] md:text-sm tracking-[0.8em] uppercase mb-4" data-aos="fade-up">
-                Visual Strategist & Creative Technologist
-            </h2>
-            <h1 class="font-extrabold tracking-tighter leading-none" data-aos="zoom-out" data-aos-duration="1500">
-                <span class="text-gradient text-[12vw] md:text-[8.5rem] block uppercase">M ZAKY MAHID</span>
-                <span class="italic font-light text-[10vw] md:text-[6.5rem] text-white/90 block mt-[-10px]">RUWANSYAH</span>
+    <section id="home" class="h-screen flex items-center justify-center relative overflow-hidden px-6 text-center">
+        <div class="z-10">
+            <div class="inline-block px-4 py-1 border border-blue-500/30 rounded-full mb-6 bg-blue-500/5" data-aos="fade-down">
+                <span class="text-blue-400 text-[9px] md:text-xs uppercase tracking-[0.5em] font-bold">SMK Animasi — DKV Undergraduate</span>
+            </div>
+            <h1 class="text-5xl md:text-[8vw] font-extrabold tracking-tighter leading-[0.9] mb-6" data-aos="zoom-out" data-aos-duration="1200">
+                <span class="text-gradient">CREATIVE</span><br>
+                <span class="italic font-light text-white/90 uppercase">TECHNOLOGIST</span>
             </h1>
-            <p class="mt-8 text-gray-400 text-[10px] md:text-xs uppercase tracking-[0.5em] font-light max-w-2xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="500">
-                Lulusan Animasi & Mahasiswa DKV • Spesialis Visual 360° <br>
-                <span class="text-blue-500 italic">3D Motion • Branding • UI/UX • Video Production</span>
+            <p class="max-w-2xl mx-auto text-gray-400 text-xs md:text-sm tracking-widest leading-relaxed uppercase" data-aos="fade-up" data-aos-delay="400">
+                M. Zaky Mahid Ruwansyah <span class="text-blue-500 mx-2">|</span> Visual Generalist <br class="hidden md:block"> 
+                Specializing in 3D Motion, Brand Identity, & Digital Strategy.
             </p>
         </div>
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-blue-500/50">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 13l5 5 5-5M7 6l5 5 5-5"/></svg>
+        
+        <a href="#work" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 hover:opacity-100 transition">
+            <span class="text-[9px] uppercase tracking-[0.5em]">Explore</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-blue-500 to-transparent"></div>
+        </a>
+    </section>
+
+    <section id="about" class="py-24 bg-[#080808] px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div data-aos="fade-right">
+                <h2 class="text-3xl md:text-5xl font-bold tracking-tighter mb-6 uppercase">Beyond the <br><span class="text-blue-500">Pixels.</span></h2>
+                <p class="text-gray-400 leading-relaxed mb-8 text-sm md:text-base">
+                    Perjalanan saya dimulai dari bangku SMK Animasi, tempat saya mengasah disiplin teknis gambar bergerak. Kini di DKV, saya mengawinkannya dengan teori komunikasi visual yang kuat. Saya bukan hanya membuat visual, saya membangun pengalaman.
+                </p>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="p-4 border border-white/5 rounded-xl bg-white/5">
+                        <h4 class="text-blue-500 font-bold text-2xl">4+</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500">Years Experience</p>
+                    </div>
+                    <div class="p-4 border border-white/5 rounded-xl bg-white/5">
+                        <h4 class="text-blue-500 font-bold text-2xl">50+</h4>
+                        <p class="text-[10px] uppercase tracking-widest text-gray-500">Projects Finished</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative" data-aos="fade-left">
+                <div class="aspect-square bg-gradient-to-br from-blue-600/20 to-purple-600/20 rounded-3xl border border-white/10 flex items-center justify-center p-8 overflow-hidden group">
+                    <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?auto=format&fit=crop&q=80&w=800" class="rounded-2xl grayscale group-hover:grayscale-0 transition-all duration-700 shadow-2xl" alt="MZM Profile">
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="about" class="py-32 px-6 bg-[#0f0f0f] border-t border-white/5">
-        <div class="max-w-4xl mx-auto text-center">
-            <h3 class="text-blue-500 text-xs tracking-widest uppercase mb-4" data-aos="fade-up">The Journey</h3>
-            <p class="text-2xl md:text-4xl font-light leading-snug tracking-tight mb-8" data-aos="fade-up" data-aos-delay="200">
-                Memulai perjalanan dari pendidikan <span class="font-bold italic">Vokasi Animasi</span> hingga mendalami <span class="font-bold italic">Desain Komunikasi Visual</span> di Universitas. Menggabungkan teknik animasi dengan strategi komunikasi visual.
-            </p>
-        </div>
-    </section>
-
-    <section id="work" class="py-24 px-6 md:px-20 bg-white text-black rounded-t-[3rem] md:rounded-t-[5rem]">
-        <div class="max-w-7xl mx-auto">
-            <div class="mb-16">
-                <h2 class="text-6xl md:text-8xl font-black tracking-tighter uppercase leading-none">Selected<br>Projects</h2>
-                <div class="h-1 w-24 bg-blue-600 mt-4"></div>
+    <section id="work" class="py-24 bg-white text-black rounded-t-[3rem] md:rounded-t-[5rem]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+                <div data-aos="fade-up">
+                    <h2 class="text-5xl md:text-7xl font-black tracking-tighter uppercase leading-none">Portfolio<br>Highlights</h2>
+                </div>
+                <div class="hidden md:flex space-x-4 mt-8" data-aos="fade-left">
+                    <button class="px-6 py-2 bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-widest">All</button>
+                    <button class="px-6 py-2 bg-gray-100 hover:bg-black hover:text-white rounded-full text-[10px] font-bold uppercase tracking-widest transition">3D & Motion</button>
+                    <button class="px-6 py-2 bg-gray-100 hover:bg-black hover:text-white rounded-full text-[10px] font-bold uppercase tracking-widest transition">Branding</button>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
-                <div class="work-card group relative overflow-hidden rounded-2xl aspect-[4/5] bg-gray-100" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700" alt="Identity Design">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end text-white text-left">
-                        <span class="text-blue-400 text-[10px] tracking-widest uppercase mb-2">Visual Identity</span>
-                        <h4 class="text-2xl font-bold">Branding Project</h4>
-                        <p class="text-xs text-gray-300 mt-2">Logo & Brand Guidelines</p>
+                <div class="project-card group cursor-pointer" data-aos="fade-up">
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-3xl mb-4 shadow-xl bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Work">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end text-white text-left">
+                            <h4 class="text-2xl font-bold tracking-tight">Social Media Branding</h4>
+                            <p class="text-xs text-blue-400 mt-2 uppercase tracking-widest">Digital Campaign</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="work-card group relative overflow-hidden rounded-2xl aspect-[4/5] bg-gray-100" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700" alt="3D Project">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end text-white text-left">
-                        <span class="text-blue-400 text-[10px] tracking-widest uppercase mb-2">3D Motion</span>
-                        <h4 class="text-2xl font-bold">Animation Showcase</h4>
-                        <p class="text-xs text-gray-300 mt-2">Blender & Cinema 4D</p>
+                <div class="project-card group cursor-pointer" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-3xl mb-4 shadow-xl bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Work">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end text-white text-left">
+                            <h4 class="text-2xl font-bold tracking-tight">3D Product Mockup</h4>
+                            <p class="text-xs text-blue-400 mt-2 uppercase tracking-widest">3D Modeling</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="work-card group relative overflow-hidden rounded-2xl aspect-[4/5] bg-gray-100" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1586717791821-3f44a563dc4c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover transition-transform duration-700" alt="UIUX">
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end text-white text-left">
-                        <span class="text-blue-400 text-[10px] tracking-widest uppercase mb-2">Digital Product</span>
-                        <h4 class="text-2xl font-bold">App Interface</h4>
-                        <p class="text-xs text-gray-300 mt-2">Figma Design System</p>
+                <div class="project-card group cursor-pointer" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative aspect-[3/4] overflow-hidden rounded-3xl mb-4 shadow-xl bg-gray-200">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Work">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent opacity-0 group-hover:opacity-100 transition-opacity p-8 flex flex-col justify-end text-white text-left">
+                            <h4 class="text-2xl font-bold tracking-tight">UI/UX Design</h4>
+                            <p class="text-xs text-blue-400 mt-2 uppercase tracking-widest">Mobile Interface</p>
+                        </div>
                     </div>
                 </div>
 
             </div>
+
+            <div class="mt-20 text-center">
+                <a href="https://behance.net" target="_blank" class="inline-block px-12 py-4 border-2 border-black font-black uppercase tracking-[0.3em] text-[10px] hover:bg-black hover:text-white transition-all">View All Projects</a>
+            </div>
         </div>
     </section>
 
-    <footer class="py-20 bg-white text-black text-center px-4 border-t border-gray-100">
-        <p class="text-[10px] tracking-[0.5em] text-gray-400 mb-4 uppercase leading-relaxed">Let's connect and create something impactful</p>
-        <a href="mailto:muhzakymah@gmail.com" class="text-2xl md:text-4xl font-black tracking-tighter hover:text-blue-600 transition">HELLO@MUHZAKYMAH.MY.ID</a>
-        <div class="mt-12 flex justify-center space-x-6 text-xs font-bold tracking-widest text-gray-400">
-            <a href="#" class="hover:text-black">INSTAGRAM</a>
-            <a href="#" class="hover:text-black">LINKEDIN</a>
-            <a href="#" class="hover:text-black">BEHANCE</a>
+    <footer class="py-24 bg-white text-black text-center px-6 border-t border-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <h3 class="text-[10px] font-bold uppercase tracking-[0.5em] text-blue-600 mb-8" data-aos="fade-up">Ready to collaborate?</h3>
+            <h2 class="text-3xl md:text-6xl font-black tracking-tighter mb-12 leading-tight" data-aos="fade-up" data-aos-delay="200">LET'S TRANSFORM YOUR VISUAL IDENTITY.</h2>
+            <a href="mailto:hello@muhzakymah.my.id" class="text-xl md:text-3xl border-b-4 border-blue-500 pb-2 hover:bg-blue-500 hover:text-white transition-all duration-300">hello@muhzakymah.my.id</a>
+            
+            <div class="mt-20 flex justify-center space-x-8 text-[10px] font-bold tracking-[0.3em] opacity-40">
+                <a href="#" class="hover:opacity-100">INSTAGRAM</a>
+                <a href="#" class="hover:opacity-100">LINKEDIN</a>
+                <a href="#" class="hover:opacity-100">BEHANCE</a>
+            </div>
+            <p class="mt-12 text-[9px] text-gray-400 uppercase tracking-widest">© 2026 M ZAKY MAHID • ALL RIGHTS RESERVED</p>
         </div>
     </footer>
 
