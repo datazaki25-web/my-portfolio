@@ -1,68 +1,272 @@
-<style>
-    /* ... (CSS sebelumnya tetap sama) ... */
-
-    body { 
-        background-color: #050505; /* Warna dasar gelap */
-        color: #fff; 
-        font-family: 'Space Grotesk', sans-serif;
-        overflow-x: hidden;
-        cursor: none;
-        position: relative;
-    }
-
-    /* Damask Background Layer */
-    .damask-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        /* Menggunakan pola damask subtle */
-        background-image: url('https://www.transparenttextures.com/patterns/damask-wallpaper.png');
-        background-repeat: repeat;
-        opacity: 0.15; /* Intensitas pola: atur 0.1 sampai 0.3 sesuai selera */
-        pointer-events: none;
-        z-index: -2;
-        mix-blend-mode: luminosity;
-    }
-
-    /* Efek Gradasi agar tengah lebih terang (fokus) */
-    .vignette {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(circle, rgba(0,0,0,0) 20%, rgba(0,0,0,0.8) 100%);
-        pointer-events: none;
-        z-index: -1;
-    }
-
-    /* Animasi halus untuk background agar terasa hidup */
-    @keyframes slowScroll {
-        from { background-position: 0 0; }
-        to { background-position: 500px 1000px; }
-    }
-    .damask-bg {
-        animation: slowScroll 120s linear infinite;
-    }
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M ZAKY MAHID | Visual Alchemist</title>
     
-    /* Sisanya tetap sama seperti kode sebelumnya */
-</style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Syne:wght@400;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
+    <style>
+        :root { 
+            --primary: #3b82f6; 
+            --accent: #8b5cf6;
+            --bg-dark: #080808;
+        }
+        
+        * { cursor: none !important; } /* Sembunyikan kursor asli di semua elemen */
+
+        body { 
+            background-color: var(--bg-dark); 
+            color: #fff; 
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, .font-syne { font-family: 'Syne', sans-serif; }
+
+        /* --- BACKGROUND SYSTEM --- */
+        .damask-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/damask-wallpaper.png');
+            background-repeat: repeat;
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: -2;
+            animation: slowPan 180s linear infinite;
+        }
+
+        .vignette {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.6) 70%, rgba(0,0,0,0.9) 100%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .noise {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.04; pointer-events: none; z-index: 100;
+        }
+
+        @keyframes slowPan {
+            from { background-position: 0 0; }
+            to { background-position: 1000px 2000px; }
+        }
+
+        /* --- CURSOR SYSTEM --- */
+        #cursor-dot {
+            width: 8px; height: 8px; background: white;
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 10001; mix-blend-mode: difference;
+        }
+        #cursor-ring {
+            width: 40px; height: 40px; border: 1.5px solid rgba(255,255,255,0.3);
+            border-radius: 50%; position: fixed; pointer-events: none;
+            z-index: 10000; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* --- GLASSMORPHISM --- */
+        .card-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .card-glass:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            transform: scale(1.02) translateY(-10px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #fff, var(--primary), var(--accent));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* --- CUSTOM DECORATION --- */
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 0;
+            background: rgba(0,0,0,0.3);
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+    </style>
+</head>
 <body>
-    <div class="damask-bg"></div>
+
+    <div class="damask-overlay"></div>
     <div class="vignette"></div>
-    
-    <div id="cursor"></div>
-    <div id="cursor-outline"></div>
     <div class="noise"></div>
     
-    ```
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
 
-### Tips untuk Mahasiswa DKV:
-Karena pola Damask sangat detail, kuncinya adalah **subtilitas**. 
-* Jika kamu ingin terlihat lebih **Gothic/Mysterious**: Gunakan warna dasar hitam pekat dengan pola Damask berwarna abu-abu sangat tua (opacity `0.1`).
-* Jika kamu ingin terlihat lebih **Luxury/Art-Gallery**: Naikkan sedikit opacity-nya menjadi `0.25` dan tambahkan sedikit *tint* warna biru pada layer `damask-bg`.
+    <header class="fixed top-0 w-full z-[1000] p-6 md:p-10 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="text-3xl font-bold tracking-tighter italic magnetic-target">MZM<span class="text-blue-500">.</span></a>
+        <nav class="hidden md:flex gap-12 text-[10px] tracking-[0.5em] uppercase font-bold">
+            <a href="#work" class="hover:text-blue-500 transition magnetic-target">Works</a>
+            <a href="#about" class="hover:text-blue-500 transition magnetic-target">About</a>
+            <a href="#contact" class="hover:text-blue-500 transition magnetic-target">Contact</a>
+        </nav>
+        <div class="md:hidden w-6 h-[2px] bg-white"></div>
+    </header>
 
-**Mau saya bantu buatkan bagian "Skill Set" dengan ikon yang juga mengikuti gaya Damask-Modern ini?**
+    <section class="relative min-height-screen flex flex-col items-center justify-center pt-32 pb-20 px-6">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60vw] h-[60vw] bg-blue-600/10 blur-[150px] rounded-full z-0"></div>
+
+        <div class="relative z-10 text-center">
+            <div class="overflow-hidden mb-6">
+                <span class="block text-blue-500 text-xs md:text-sm tracking-[0.8em] uppercase font-bold" data-aos="fade-down">
+                    The Art of Multimedia & Visual Design
+                </span>
+            </div>
+
+            <h1 class="text-[16vw] md:text-[11rem] font-extrabold leading-[0.8] tracking-tighter" data-aos="zoom-in" data-aos-duration="1500">
+                <span class="text-gradient">ZAKY</span><br>
+                <span class="italic font-light opacity-90">MAHID</span>
+            </h1>
+
+            <div class="flex flex-wrap justify-center gap-4 mt-12" data-aos="fade-up" data-aos-delay="600">
+                <span class="px-8 py-3 card-glass rounded-full text-[10px] tracking-widest uppercase">Motion Graphics</span>
+                <span class="px-8 py-3 card-glass rounded-full text-[10px] tracking-widest uppercase">Video Engineer</span>
+                <span class="px-8 py-3 card-glass rounded-full text-[10px] tracking-widest uppercase">3D Artist</span>
+            </div>
+        </div>
+
+        <div class="mt-32 flex flex-col items-center gap-6" data-aos="fade-up">
+            <div class="w-[1px] h-24 bg-gradient-to-b from-blue-500 to-transparent"></div>
+            <span class="text-[9px] tracking-[0.4em] uppercase opacity-40 rotate-90 origin-left">Scroll</span>
+        </div>
+    </section>
+
+    <div class="marquee mt-20">
+        <div class="marquee-content text-4xl md:text-6xl font-black italic opacity-10">
+            VISUAL ALCHEMIST • DIGITAL EXPERIENCE • MULTIMEDIA INNOVATION • DKV UI/UX • MOTION DESIGN • VISUAL ALCHEMIST • DIGITAL EXPERIENCE • 
+        </div>
+    </div>
+
+    <section id="work" class="py-40 px-6 md:px-20 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-32 gap-6">
+                <div data-aos="fade-right">
+                    <h2 class="text-7xl md:text-9xl font-extrabold tracking-tighter leading-none opacity-20">PROJECTS</h2>
+                    <h2 class="text-4xl md:text-6xl font-extrabold tracking-tighter mt-[-30px] ml-4">SELECTED WORKS<span class="text-blue-500">.</span></h2>
+                </div>
+                <p class="max-w-xs text-sm text-gray-400 font-light leading-relaxed mb-4">
+                    Kumpulan karya eksplorasi visual mulai dari motion hingga brand identity.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+                <div class="md:col-span-8" data-aos="fade-up">
+                    <div class="group relative card-glass rounded-[3rem] overflow-hidden p-4">
+                        <div class="relative aspect-video overflow-hidden rounded-[2.5rem]">
+                            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Work">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-12">
+                                <span class="text-white font-bold tracking-[0.5em] uppercase text-xs">View Case Study</span>
+                            </div>
+                        </div>
+                        <div class="p-8 flex justify-between items-center">
+                            <h3 class="text-3xl font-bold italic tracking-tighter uppercase">Brand Architecture</h3>
+                            <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center group-hover:bg-blue-600 group-hover:border-blue-600 transition-all">
+                                ↗
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="group relative card-glass rounded-[3rem] overflow-hidden p-4 h-full">
+                        <div class="relative aspect-square overflow-hidden rounded-[2.5rem]">
+                            <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&q=80&w=800" 
+                                 class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" alt="Work">
+                        </div>
+                        <div class="p-8">
+                            <h3 class="text-2xl font-bold italic tracking-tighter uppercase">3D Render Art</h3>
+                            <p class="text-xs text-blue-500 mt-2 font-bold tracking-[0.3em]">OCTANE • C4D</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact" class="py-40 px-6 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h2 class="text-lg md:text-xl font-bold tracking-[1em] uppercase text-blue-500 mb-12" data-aos="fade-up">Let's Create</h2>
+            <a href="mailto:muhzakymah@gmail.com" class="block text-4xl md:text-7xl font-extrabold tracking-tighter hover:text-blue-500 transition-colors magnetic-target mb-20 underline decoration-1 underline-offset-[16px]" data-aos="zoom-in">
+                hello@muhzakymah.my.id
+            </a>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 pt-20 border-t border-white/10">
+                <a href="#" class="text-[10px] font-bold tracking-[0.4em] opacity-40 hover:opacity-100 transition magnetic-target">INSTAGRAM</a>
+                <a href="#" class="text-[10px] font-bold tracking-[0.4em] opacity-40 hover:opacity-100 transition magnetic-target">BEHANCE</a>
+                <a href="#" class="text-[10px] font-bold tracking-[0.4em] opacity-40 hover:opacity-100 transition magnetic-target">LINKEDIN</a>
+                <a href="#" class="text-[10px] font-bold tracking-[0.4em] opacity-40 hover:opacity-100 transition magnetic-target">DRIBBBLE</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1200, once: false, mirror: true });
+
+        // --- Custom Cursor Logic ---
+        const dot = document.getElementById('cursor-dot');
+        const ring = document.getElementById('cursor-ring');
+
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(dot, { x: e.clientX, y: e.clientY, duration: 0.1 });
+            gsap.to(ring, { x: e.clientX - 20, y: e.clientY - 20, duration: 0.25 });
+        });
+
+        // --- Interactive Hover Effects ---
+        const interactive = document.querySelectorAll('.magnetic-target, .card-glass, a');
+        interactive.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(ring, { scale: 2, borderColor: '#3b82f6', duration: 0.3 });
+                gsap.to(dot, { scale: 0, duration: 0.2 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(ring, { scale: 1, borderColor: 'rgba(255,255,255,0.3)', duration: 0.3 });
+                gsap.to(dot, { scale: 1, duration: 0.2 });
+            });
+        });
+
+        // --- Magnetic Effect ---
+        const magnetics = document.querySelectorAll('.magnetic-target');
+        magnetics.forEach(m => {
+            m.addEventListener('mousemove', (e) => {
+                const rect = m.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                gsap.to(m, { x: x * 0.4, y: y * 0.4, duration: 0.4 });
+            });
+            m.addEventListener('mouseleave', () => {
+                gsap.to(m, { x: 0, y: 0, duration: 0.4 });
+            });
+        });
+
+        // Parallax Effect for Background Damask
+        window.addEventListener('scroll', () => {
+            const scroll = window.pageYOffset;
+            document.querySelector('.damask-overlay').style.transform = `translateY(${scroll * 0.1}px)`;
+        });
+    </script>
+</body>
+</html>
