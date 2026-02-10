@@ -1,0 +1,110 @@
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a0505; /* Warna dasar gelap */
+    font-family: 'Serif', 'Palatino Linotype', 'Book Antiqua', serif;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* Background Dinding Bermotif */
+.gallery-container {
+    width: 100%;
+    height: 100vh;
+    background: url('https://www.transparenttextures.com/patterns/black-paper.png'), 
+                radial-gradient(circle, #5e1a1a 0%, #2b0a0a 100%);
+    background-color: #4a0e0e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Efek Pencahayaan Museum */
+.museum-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 20%, rgba(0,0,0,0.8) 100%);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Judul Atas */
+.main-title h1 {
+    font-size: 5rem;
+    font-weight: 300;
+    letter-spacing: 5px;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+/* Tata Letak Dinding */
+.wall {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    width: 90%;
+    height: 60vh;
+}
+
+/* Styling Bingkai Umum */
+.frame {
+    border: 15px solid #b8860b; /* Warna Emas Tua */
+    border-image: linear-gradient(to bottom right, #ffd700, #8b6508, #5c4306) 1;
+    box-shadow: 10px 10px 30px rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* Bingkai Utama */
+.frame-main {
+    width: 500px;
+    height: 350px;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+/* Efek Bayangan Orang */
+.shadow-profile {
+    width: 200px;
+    height: 250px;
+    background: rgba(0, 0, 0, 0.6);
+    filter: blur(15px);
+    border-radius: 50% 50% 0 0;
+    margin-bottom: -10px;
+}
+
+/* Bingkai Samping */
+.frame-small { width: 180px; height: 180px; transform: translateY(-50px); }
+.frame-large { width: 300px; height: 400px; position: absolute; right: -50px; }
+
+/* Nama di Bawah */
+.name-tag {
+    margin-top: 30px;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Dekorasi Tanaman (Opsional) */
+.plant-decoration {
+    position: absolute;
+    bottom: -20px;
+    right: 5%;
+    font-size: 15rem;
+    filter: brightness(0.2) contrast(1.2);
+    transform: rotate(-10px);
+}
