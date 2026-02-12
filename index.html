@@ -1,168 +1,161 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M Zaky Mahid Ruwansyah | Visual Artist Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M Zaky Mahid Ruwansyah | Visual Artist Portfolio</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Montserrat:wght@100;300;500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Montserrat:wght@100;300;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-<style>
-:root {
-    --gold: #c5a059;
-    --dark: #0a0a0a;
-}
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
 
-body {
-    background: var(--dark);
-    color: #f0f0f0;
-    font-family: 'Montserrat', sans-serif;
-    overflow-x: hidden;
-}
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--dark); color: #f0f0f0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-.font-aesthetic { font-family: 'Cormorant Garamond', serif; }
+        .font-aesthetic { font-family: 'Cormorant Garamond', serif; }
 
-.museum-overlay {
-    position: fixed;
-    inset: 0;
-    background:
-        radial-gradient(circle at 50% 50%, rgba(197,160,89,0.05) 0%, transparent 80%),
-        linear-gradient(rgba(10,10,10,0.95), rgba(10,10,10,0.95));
-    z-index: -1;
-}
+        .museum-overlay {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.05) 0%, transparent 80%),
+                linear-gradient(rgba(10,10,10,0.95), rgba(10,10,10,0.95)),
+                url('https://www.transparenttextures.com/patterns/dark-leather.png');
+            z-index: -1;
+        }
 
-/* Media Slot */
-.media-slot {
-    background: #000;
-    border: 1px solid #1a1a1a;
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-}
-.media-slot video {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+        .media-slot {
+            background: #000;
+            border: 1px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+        }
 
-/* Experience Line */
-.exp-line {
-    border-left: 1px solid rgba(197,160,89,0.3);
-    padding-left: 2rem;
-    position: relative;
-}
-.exp-line::before {
-    content: '';
-    position: absolute;
-    left: -4px;
-    top: 0;
-    width: 7px;
-    height: 7px;
-    background: var(--gold);
-    border-radius: 50%;
-}
-</style>
+        .media-slot video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .exp-line {
+            border-left: 1px solid rgba(197, 160, 89, 0.3);
+            padding-left: 2rem;
+            position: relative;
+        }
+        .exp-line::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: 0;
+            width: 7px;
+            height: 7px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .lang-btn { color: #555; transition: 0.3s; cursor: pointer; font-weight: 700; }
+        .lang-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        .lang-en-content { display: none; }
+    </style>
 </head>
 
 <body>
 
 <div class="museum-overlay"></div>
 
-<!-- EXPERIENCE SECTION -->
+<!-- NAV -->
+<nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 bg-black/80 backdrop-blur-lg border-b border-white/5">
+    <div class="font-aesthetic italic text-2xl tracking-tighter">
+        MZMR<span class="text-[#c5a059]">.</span>
+    </div>
+    <div class="flex gap-4 text-[11px] uppercase tracking-widest">
+        <span onclick="setLang('id')" id="btn-id" class="lang-btn active">ID</span>
+        <span onclick="setLang('en')" id="btn-en" class="lang-btn">EN</span>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="min-h-screen flex items-center px-6 max-w-[1400px] mx-auto pt-24">
+    <div class="flex flex-col md:flex-row items-center w-full justify-between gap-12">
+        <div class="md:w-3/5">
+            <h1 class="font-aesthetic text-[10vw] md:text-8xl font-bold uppercase leading-[0.9]">
+                M ZAKY MAHID <br> RUWANSYAH
+            </h1>
+            <div class="h-[2px] w-20 bg-[#c5a059] my-8"></div>
+            <p class="text-sm tracking-[0.6em] uppercase text-[#c5a059] opacity-70">
+                Visual Alchemist • 3D Artist • Animator
+            </p>
+        </div>
+
+        <div class="md:w-2/5 flex justify-center">
+            <img src="https://github.com/datazaki25-web/my-portfolio/blob/main/assets/images/foto-zaky-full.png?raw=true"
+                 class="max-h-[80vh] drop-shadow-[0_0_50px_rgba(197,160,89,0.15)]">
+        </div>
+    </div>
+</section>
+
+<!-- EXPERIENCE -->
 <section class="py-24 px-6 md:px-10 max-w-[1400px] mx-auto">
 
-<h2 class="font-aesthetic text-5xl italic mb-20">Riwayat Eksibisi</h2>
+<h2 class="font-aesthetic text-6xl italic mb-20">Riwayat Eksibisi</h2>
 
 <div class="flex flex-col gap-32">
 
-<!-- ================= VIDEO CREATOR (PAKAI GARIS) ================= -->
+<!-- VIDEO CREATOR (PAKAI GARIS) -->
 <div class="exp-line" data-aos="fade-up">
-
-    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2 font-bold">
+    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase font-bold mb-2">
         Desember 2024 – Juli 2025
     </p>
-
-    <h3 class="font-aesthetic text-3xl md:text-4xl italic">
-        Staf Kreatif – Video Creator
-    </h3>
-
-    <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] mb-6">
+    <h3 class="font-aesthetic text-4xl italic">Staf Kreatif – Video Creator</h3>
+    <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] mb-8">
         PT Inovasi Karsa Nusantara – Tangerang, Indonesia
     </p>
 
-    <p class="text-sm md:text-base opacity-60 max-w-4xl mb-12 leading-relaxed">
-        Bertanggung jawab membuat konten video promosi digital dan media sosial,
-        mulai dari perencanaan, pengambilan gambar, hingga editing.
-    </p>
-
-    <!-- GRID VIDEO (GARIS BERHENTI DI SINI) -->
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8">
-        <div class="media-slot" style="aspect-ratio:9/16;">
-            <video controls><source src="assets/images/Nussa parts/Video 1.mp4"></video>
-        </div>
-        <div class="media-slot" style="aspect-ratio:9/16;">
-            <video controls><source src="assets/images/Nussa parts/Video 2.mp4"></video>
-        </div>
-        <div class="media-slot" style="aspect-ratio:9/16;">
-            <video controls><source src="assets/images/Nussa parts/Video 3.mp4"></video>
-        </div>
-        <div class="media-slot" style="aspect-ratio:9/16;">
-            <video controls><source src="assets/images/Nussa parts/Video 4.mp4"></video>
-        </div>
-        <div class="media-slot" style="aspect-ratio:9/16;">
-            <video controls><source src="assets/images/Nussa parts/video 5.mp4"></video>
-        </div>
-        <div class="media-slot" style="aspect-ratio:9/16;">
-            <video controls><source src="assets/images/Nussa parts/video 6.mp4"></video>
-        </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-10">
+        <div class="media-slot" style="aspect-ratio:9/16"><video controls src="assets/images/Nussa parts/Video 1.mp4"></video></div>
+        <div class="media-slot" style="aspect-ratio:9/16"><video controls src="assets/images/Nussa parts/Video 2.mp4"></video></div>
+        <div class="media-slot" style="aspect-ratio:9/16"><video controls src="assets/images/Nussa parts/Video 3.mp4"></video></div>
+        <div class="media-slot" style="aspect-ratio:9/16"><video controls src="assets/images/Nussa parts/Video 4.mp4"></video></div>
+        <div class="media-slot" style="aspect-ratio:9/16"><video controls src="assets/images/Nussa parts/video 5.mp4"></video></div>
+        <div class="media-slot" style="aspect-ratio:9/16"><video controls src="assets/images/Nussa parts/video 6.mp4"></video></div>
     </div>
-
 </div>
 
-<!-- ================= GRAPHIC DESIGN (TANPA GARIS) ================= -->
+<!-- GRAPHIC DESIGN (GARIS HILANG) -->
 <div class="pl-8" data-aos="fade-up">
-
-    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2 font-bold">
+    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase font-bold mb-2">
         Januari – April 2020
     </p>
-
-    <h3 class="font-aesthetic text-3xl md:text-4xl italic">
-        Staf Kreatif – Graphic Design
-    </h3>
-
-    <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] mb-6">
+    <h3 class="font-aesthetic text-4xl italic">Staf Kreatif – Graphic Design</h3>
+    <p class="text-[10px] opacity-40 uppercase tracking-[0.3em]">
         PT Ramoti Indonesia – Kota Bogor
     </p>
-
-    <p class="text-sm md:text-base opacity-60 max-w-4xl leading-relaxed">
-        Mendesain 100+ konten visual Instagram feed & story sesuai identitas merek.
-    </p>
-
 </div>
 
-<!-- ================= INTERNSHIP (TANPA GARIS) ================= -->
+<!-- INTERNSHIP (GARIS HILANG) -->
 <div class="pl-8" data-aos="fade-up">
-
-    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2 font-bold">
+    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase font-bold mb-2">
         Februari – April 2018
     </p>
-
-    <h3 class="font-aesthetic text-3xl md:text-4xl italic">
-        Internship – Animator
-    </h3>
-
-    <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] mb-6">
+    <h3 class="font-aesthetic text-4xl italic">Internship – Animator</h3>
+    <p class="text-[10px] opacity-40 uppercase tracking-[0.3em]">
         PT Kumata Indonesia – Bandung
     </p>
-
-    <p class="text-sm md:text-base opacity-60 max-w-4xl leading-relaxed">
-        Membuat keyframe dan tweening animasi karakter untuk film <b>T-JTown (NET TV)</b>.
-    </p>
-
 </div>
 
 </div>
@@ -171,6 +164,11 @@ body {
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
 AOS.init({ duration: 1000, once: true });
+
+function setLang(lang) {
+    document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+}
 </script>
 
 </body>
