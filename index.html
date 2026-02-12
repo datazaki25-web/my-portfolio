@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M Zaky Mahid Ruwansyah | Grand Gallery Portfolio</title>
+    <title>M Zaky Mahid Ruwansyah | Cinematic Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Montserrat:wght@100;300;500&display=swap" rel="stylesheet">
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -15,302 +14,206 @@
         :root {
             --gold: #c5a059;
             --dark-museum: #0a0a0a;
-            --card-bg: #111111;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             background: var(--dark-museum);
             color: #f0f0f0;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* MUSEUM WALL BACKGROUND */
         .museum-bg {
             position: fixed;
             inset: 0;
             background: 
-                radial-gradient(circle at 50% 30%, rgba(197, 160, 89, 0.05) 0%, transparent 70%),
-                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
-                url('https://www.transparenttextures.com/patterns/dark-matter.png');
+                radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.05) 0%, transparent 80%),
+                linear-gradient(rgba(0,0,0,0.9), rgba(0,0,0,0.9)),
+                url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
             z-index: -2;
         }
 
-        /* SPOTLIGHT EFFECT */
-        .spotlight {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(197, 160, 89, 0.08) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* CURSOR */
-        #cursor { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; position: fixed; z-index: 9999; pointer-events: none; }
-        #cursor-follower { width: 35px; height: 35px; border: 1px solid var(--gold); border-radius: 50%; position: fixed; z-index: 9998; pointer-events: none; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-
         .font-aesthetic { font-family: 'Cormorant Garamond', serif; }
-
-        /* TYPOGRAPHY */
-        .hero-title { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 0.9; }
-        .experience-title { font-size: 1.75rem; line-height: 1.2; }
-
-        /* PROFILE PNG STYLING */
-        .profile-container {
-            position: relative;
-            filter: drop-shadow(0 20px 50px rgba(0,0,0,1));
+        
+        /* Media Slots Styling */
+        .media-grid {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .media-placeholder {
+            background: #151515;
+            border: 1px solid #222;
             display: flex;
-            align-items: flex-end;
+            align-items: center;
             justify-content: center;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
         }
-        .profile-img {
-            max-height: 85vh;
-            width: auto;
-            object-fit: contain;
-            /* Pastikan file gambar Anda adalah PNG Transparan */
+        .media-placeholder:hover { border-color: var(--gold); background: #1a1a1a; }
+        
+        .lang-btn {
+            border: 1px solid var(--gold);
+            padding: 4px 12px;
+            font-size: 10px;
+            cursor: pointer;
+            transition: 0.3s;
         }
+        .lang-btn.active { background: var(--gold); color: black; }
 
-        /* COMPONENTS */
-        .portfolio-card {
-            background: var(--card-bg);
-            border: 1px solid #1a1a1a;
-            transition: all 0.5s ease;
-        }
-        .portfolio-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .gold-line {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            width: 100%;
-            opacity: 0.3;
-        }
-
-        /* CUSTOM SCROLLBAR */
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: var(--gold); }
+        /* Timeline Connector */
+        .experience-border { border-left: 1px solid rgba(197, 160, 89, 0.2); }
     </style>
 </head>
-
 <body>
 
 <div class="museum-bg"></div>
-<div class="spotlight" id="spotlight"></div>
-<div id="cursor"></div>
-<div id="cursor-follower"></div>
 
-<nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference">
-    <div class="font-aesthetic italic text-2xl font-bold tracking-tighter">
-        MZMR<span class="text-[#c5a059]">.</span>
-    </div>
-    <div class="flex gap-8 text-[9px] tracking-[0.4em] uppercase font-light">
-        <a href="#about" class="hover:text-[#c5a059] transition">The Artist</a>
-        <a href="#experience" class="hover:text-[#c5a059] transition">Chronicles</a>
-        <a href="#work" class="hover:text-[#c5a059] transition">Exhibition</a>
+<nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 bg-black/50 backdrop-blur-md border-b border-white/5">
+    <div class="font-aesthetic italic text-xl font-bold">MZMR<span class="text-[#c5a059]">.</span></div>
+    <div class="flex items-center gap-4">
+        <div class="flex gap-2">
+            <button onclick="changeLang('id')" id="btn-id" class="lang-btn active">ID</button>
+            <button onclick="changeLang('en')" id="btn-en" class="lang-btn">EN</button>
+        </div>
     </div>
 </nav>
 
-<section class="min-h-screen grid grid-cols-1 lg:grid-cols-2 items-center px-10 lg:px-24 pt-24 overflow-hidden">
-    <div data-aos="fade-right" data-aos-duration="1200">
-        <p class="font-aesthetic italic text-2xl text-[#c5a059] mb-4">Master of Visual Arts</p>
-        <h1 class="hero-title font-aesthetic font-bold uppercase mb-6">
-            M ZAKY MAHID<br>
-            <span class="italic font-light text-[#c5a059]">RUWANSYAH</span>
-        </h1>
-        <div class="border-l-2 border-[#c5a059] pl-6 py-2">
-            <p class="text-[11px] tracking-[0.4em] uppercase opacity-60 mb-2">DKV Multimedia Student</p>
-            <p class="text-[11px] tracking-[0.4em] uppercase opacity-40">Visual Creator • 3D Artist • Animator</p>
-        </div>
+<section class="min-h-screen flex flex-col justify-center items-center px-6 text-center pt-20">
+    <div class="profile-container mb-8" data-aos="zoom-out">
+        <img src="assets/images/zaky-full.png" alt="Zaky" class="max-h-[60vh] object-contain drop-shadow-[0_0_30px_rgba(197,160,89,0.2)]">
     </div>
-
-    <div class="profile-container mt-12 lg:mt-0" data-aos="fade-up" data-aos-duration="1500">
-        <img src="assets/images/foto-zaky.png" alt="M Zaky Mahid Ruwansyah" class="profile-img">
-    </div>
+    <h1 class="font-aesthetic text-4xl md:text-7xl font-bold uppercase tracking-tighter" data-aos="fade-up">
+        M Zaky Mahid Ruwansyah
+    </h1>
+    <p class="mt-4 text-[10px] tracking-[0.5em] uppercase text-[#c5a059]" data-aos="fade-up" data-aos-delay="200">
+        Visual Alchemist • 3D Artist • Animator
+    </p>
 </section>
 
-<section id="about" class="py-32 px-10 lg:px-24 bg-black/30">
-    <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
-        <h2 class="font-aesthetic text-5xl italic mb-10 text-[#c5a059]">Artist Statement</h2>
-        <p class="font-light leading-relaxed text-lg lg:text-2xl opacity-80 italic">
-            "Seorang yang fokus bidang <span class="text-[#c5a059] font-normal">kreator visual</span> yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."
-        </p>
-        <div class="gold-line mt-12"></div>
-    </div>
+<section class="py-24 px-6 md:px-24 max-w-5xl mx-auto text-center">
+    <h2 class="font-aesthetic text-4xl italic mb-8 text-[#c5a059]" data-id="title-about">Tentang Saya</h2>
+    <p class="text-lg md:text-xl font-light leading-relaxed opacity-80 italic" data-id="desc-about">
+        "Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."
+    </p>
 </section>
 
-<section id="experience" class="py-32 px-10 lg:px-24">
-    <div class="max-w-6xl mx-auto">
-        <div class="flex items-center gap-6 mb-20" data-aos="fade-right">
-            <h2 class="font-aesthetic text-6xl italic">Chronicles</h2>
-            <div class="flex-1 h-[1px] bg-gradient-to-r from-[#c5a059] to-transparent opacity-30"></div>
-        </div>
+<section class="py-24 px-6 md:px-24 max-w-7xl mx-auto">
+    <h2 class="font-aesthetic text-5xl italic mb-16" data-id="title-exp">Riwayat Eksibisi Kerja</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            
-            <div class="portfolio-card p-8 group" data-aos="fade-up">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Des 2024 – Jul 2025</span>
-                    <span class="font-aesthetic italic opacity-20 text-4xl">01</span>
-                </div>
-                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Staf Kreatif – Graphic Design</h3>
-                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">PT Kumata Indonesia – Bandung</p>
-                <p class="text-sm leading-relaxed opacity-60 font-light">Mendesain 100+ konten visual Instagram feed & story sesuai identitas merek. Berkolaborasi dengan tim pemasaran untuk kampanye visual dan mengelola efisiensi produksi melalui template desain.</p>
-            </div>
-
-            <div class="portfolio-card p-8 group" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Agu – Okt 2023</span>
-                    <span class="font-aesthetic italic opacity-20 text-4xl">02</span>
-                </div>
-                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Staf Kreatif – Video Creator</h3>
-                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">PT Ramoti Indonesia – Bogor</p>
-                <p class="text-sm leading-relaxed opacity-60 font-light">Bertanggung jawab penuh dalam produksi video promosi digital (Reels, TikTok, YT Shorts). Ahli dalam Adobe Premiere Pro & After Effects untuk menciptakan transisi dan grafis yang memikat.</p>
-            </div>
-
-            <div class="portfolio-card p-8 group" data-aos="fade-up">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Jan – Apr 2020</span>
-                    <span class="font-aesthetic italic opacity-20 text-4xl">03</span>
-                </div>
-                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Internship – Animator</h3>
-                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">PT Inovasi Karsa Nusantara – Tangerang</p>
-                <p class="text-sm leading-relaxed opacity-60 font-light">Produksi film animasi <b>T-JTown (NET TV)</b>. Membuat keyframe dan tweening untuk 45+ scene menggunakan Toon Boom Harmony dengan fokus pada kualitas dan kontinuitas storyboard.</p>
-            </div>
-
-            <div class="portfolio-card p-8 group" data-aos="fade-up" data-aos-delay="100">
-                <div class="flex justify-between items-start mb-6">
-                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Feb – Apr 2018</span>
-                    <span class="font-aesthetic italic opacity-20 text-4xl">04</span>
-                </div>
-                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Internship – Video Editor</h3>
-                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">DISKOMINFO Kabupaten Bogor</p>
-                <p class="text-sm leading-relaxed opacity-60 font-light">Fokus pada publikasi visual pemerintah. Membuat Reels informatif, desain layout majalah, dan mengelola arsip media visual untuk berbagai platform digital dan cetak.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-<section id="work" class="py-32 px-10 lg:px-24">
-    <div class="flex justify-between items-end mb-20">
-        <h2 class="font-aesthetic text-6xl italic">The Exhibition</h2>
-        <p class="text-[10px] tracking-[0.5em] uppercase opacity-30 hidden md:block">Selected Visual Artifacts</p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+    <div class="space-y-24">
         
-        <div class="md:col-span-8 portfolio-card group overflow-hidden" data-aos="fade-right">
-            <div class="aspect-video overflow-hidden">
-                <img src="assets/images/work-1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
-            </div>
-            <div class="p-8 flex justify-between items-center">
-                <div>
-                    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">Motion Graphics</p>
-                    <h3 class="font-aesthetic text-3xl">Visual Narrative Explainer</h3>
-                </div>
-                <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#c5a059] transition">→</div>
-            </div>
-        </div>
-
-        <div class="md:col-span-4 portfolio-card group overflow-hidden md:mt-12" data-aos="fade-left">
-            <div class="aspect-[3/4] overflow-hidden">
-                <img src="assets/images/work-2.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
-            </div>
-            <div class="p-8">
-                <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">Branding</p>
-                <h3 class="font-aesthetic text-3xl">Identity System</h3>
+        <div class="experience-border pl-8 relative" data-aos="fade-left">
+            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-[#c5a059] rounded-full"></div>
+            <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2">Desember 2024 – Juli 2025</p>
+            <h3 class="font-aesthetic text-3xl italic">Staf Kreatif – Graphic Design</h3>
+            <p class="text-xs opacity-50 uppercase tracking-widest mb-4">PT Kumata Indonesia – Bandung</p>
+            <p class="text-sm opacity-80 max-w-3xl" data-id="exp1-desc">Mendesain 100+ konten visual Instagram feed & story. Membuat materi promosi digital seperti banner dan poster dengan evaluasi data engagement.</p>
+            
+            <div class="media-grid grid-cols-2 md:grid-cols-4 h-48 mt-6">
+                <div class="media-placeholder md:col-span-3">1 YouTube Thumbnail (High-Res)</div>
+                <div class="media-placeholder">Main Video</div>
             </div>
         </div>
 
-        <div class="md:col-span-5 portfolio-card group overflow-hidden" data-aos="fade-up">
-            <div class="aspect-square overflow-hidden">
-                <img src="assets/images/work-3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
-            </div>
-            <div class="p-8">
-                <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">3D Artist</p>
-                <h3 class="font-aesthetic text-3xl">Environmental Art</h3>
+        <div class="experience-border pl-8 relative" data-aos="fade-left">
+            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-[#c5a059] rounded-full"></div>
+            <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2">Agustus – Oktober 2023</p>
+            <h3 class="font-aesthetic text-3xl italic">Staf Kreatif – Video Creator</h3>
+            <p class="text-xs opacity-50 uppercase tracking-widest mb-4">PT Ramoti Indonesia – Kota Bogor</p>
+            <p class="text-sm opacity-80 max-w-3xl" data-id="exp2-desc">Membuat konten video promosi digital menggunakan Adobe Premiere Pro, After Effects, dan CapCut untuk format Reels, Shorts, dan TikTok.</p>
+            
+            <div class="media-grid grid-cols-3 md:grid-cols-6 h-48 mt-6">
+                <div class="media-placeholder h-full">Reels 1</div>
+                <div class="media-placeholder h-full">Reels 2</div>
+                <div class="media-placeholder h-full">Reels 3</div>
+                <div class="media-placeholder h-full bg-[#1a1a1a]">Post 1</div>
+                <div class="media-placeholder h-full bg-[#1a1a1a]">Post 2</div>
+                <div class="media-placeholder h-full bg-[#1a1a1a]">Post 3</div>
             </div>
         </div>
 
-        <div class="md:col-span-7 portfolio-card group overflow-hidden md:-mt-24" data-aos="fade-up" data-aos-delay="200">
-            <div class="aspect-video overflow-hidden">
-                <img src="assets/images/work-4.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
+        <div class="experience-border pl-8 relative" data-aos="fade-left">
+            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-[#c5a059] rounded-full"></div>
+            <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2">Januari – April 2020</p>
+            <h3 class="font-aesthetic text-3xl italic">Internship – Animator</h3>
+            <p class="text-xs opacity-50 uppercase tracking-widest mb-4">PT Inovasi Karsa Nusantara – Tangerang</p>
+            <p class="text-sm opacity-80 max-w-3xl" data-id="exp3-desc">Membuat keyframe dan tweening animasi karakter untuk film animasi T-JTown (NET TV) menggunakan Toon Boom Harmony.</p>
+            
+            <div class="media-grid grid-cols-3 md:grid-cols-9 h-32 mt-6">
+                <div class="media-placeholder">TikTok 1</div><div class="media-placeholder">TikTok 2</div><div class="media-placeholder">TikTok 3</div>
+                <div class="media-placeholder">TikTok 4</div><div class="media-placeholder">TikTok 5</div><div class="media-placeholder">TikTok 6</div>
+                <div class="media-placeholder">TikTok 7</div><div class="media-placeholder">TikTok 8</div><div class="media-placeholder">TikTok 9</div>
             </div>
-            <div class="p-8">
-                <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">Film</p>
-                <h3 class="font-aesthetic text-3xl">Cinematic Video Production</h3>
+        </div>
+
+        <div class="experience-border pl-8 relative" data-aos="fade-left">
+            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-[#c5a059] rounded-full"></div>
+            <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2">Februari – April 2018</p>
+            <h3 class="font-aesthetic text-3xl italic">Internship – Video Editor</h3>
+            <p class="text-xs opacity-50 uppercase tracking-widest mb-4">DISKOMINFO Kabupaten Bogor</p>
+            <p class="text-sm opacity-80 max-w-3xl" data-id="exp4-desc">Memproduksi video pendek informatif (Reels) dan mendesain layout majalah serta materi grafis untuk format digital dan cetak.</p>
+            
+            <div class="media-grid grid-cols-2 md:grid-cols-6 h-48 mt-6">
+                <div class="media-placeholder">Reels 1</div><div class="media-placeholder">Reels 2</div>
+                <div class="media-placeholder">Reels 3</div><div class="media-placeholder">Reels 4</div>
+                <div class="media-placeholder bg-white/10 md:col-span-2">E-Book (2 Files)</div>
             </div>
         </div>
 
     </div>
 </section>
 
-<footer id="contact" class="py-40 text-center border-t border-white/5 bg-black/50">
-    <div data-aos="zoom-in">
-        <p class="font-aesthetic italic text-2xl mb-4 text-[#c5a059]">Available for New Commissions</p>
-        <h2 class="hero-title font-aesthetic mb-10 uppercase font-bold">Start a Project</h2>
-        <a href="mailto:muhzakymah@gmail.com" class="text-xl tracking-[0.3em] border-b-2 border-[#c5a059] pb-4 hover:opacity-50 transition">
-            muhzakymah@gmail.com
-        </a>
-    </div>
-    
-    <div class="mt-32 opacity-20 text-[9px] uppercase tracking-[0.8em]">
-        M Zaky Mahid Ruwansyah &copy; 2026 • Visual Alchemist
-    </div>
+<footer class="py-20 text-center bg-black/50 border-t border-white/5">
+    <h2 class="font-aesthetic text-4xl mb-6">M Zaky Mahid Ruwansyah</h2>
+    <a href="mailto:muhzakymah@gmail.com" class="text-[#c5a059] tracking-widest text-sm hover:opacity-50 transition">muhzakymah@gmail.com</a>
 </footer>
 
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 1000, once: true });
 
-    // Custom Cursor & Spotlight Logic
-    const cursor = document.getElementById("cursor");
-    const follower = document.getElementById("cursor-follower");
-    const spotlight = document.getElementById("spotlight");
+    const translations = {
+        id: {
+            "title-about": "Tentang Saya",
+            "desc-about": "\"Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual.\"",
+            "title-exp": "Riwayat Eksibisi Kerja",
+            "exp1-desc": "Mendesain 100+ konten visual Instagram feed & story. Membuat materi promosi digital seperti banner dan poster.",
+            "exp2-desc": "Membuat konten video promosi digital menggunakan Adobe Premiere Pro, After Effects, dan CapCut untuk format Reels, Shorts, dan TikTok.",
+            "exp3-desc": "Membuat keyframe dan tweening animasi karakter untuk film animasi T-JTown (NET TV) menggunakan Toon Boom Harmony.",
+            "exp4-desc": "Memproduksi video pendek informatif (Reels) dan mendesain layout majalah serta materi grafis."
+        },
+        en: {
+            "title-about": "About Me",
+            "desc-about": "\"A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a deep interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works.\"",
+            "title-exp": "Work Exhibition History",
+            "exp1-desc": "Designed 100+ Instagram feed & story visual contents. Created digital promotional materials like banners and posters.",
+            "exp2-desc": "Created digital promotional video content using Adobe Premiere Pro, After Effects, and CapCut for Reels, Shorts, and TikTok formats.",
+            "exp3-desc": "Created character animation keyframes and tweening for T-JTown (NET TV) animation film using Toon Boom Harmony.",
+            "exp4-desc": "Produced informative short videos (Reels) and designed magazine layouts and graphic materials."
+        }
+    };
 
-    document.addEventListener("mousemove", e => {
-        const x = e.clientX;
-        const y = e.clientY;
+    function changeLang(lang) {
+        // Toggle Active Button
+        document.getElementById('btn-id').classList.toggle('active', lang === 'id');
+        document.getElementById('btn-en').classList.toggle('active', lang === 'en');
 
-        // Smooth Cursor
-        gsap.to(cursor, { x: x, y: y, duration: 0.1 });
-        gsap.to(follower, { x: x - 17, y: y - 17, duration: 0.3 });
-        
-        // Spotlight movement
-        spotlight.style.setProperty('--x', x + 'px');
-        spotlight.style.setProperty('--y', y + 'px');
-    });
-
-    // Interaction Hover
-    const interactiveElements = document.querySelectorAll('a, .portfolio-card, button');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            follower.style.transform = 'scale(1.8)';
-            follower.style.background = 'rgba(197, 160, 89, 0.1)';
-            cursor.style.transform = 'scale(0)';
+        // Change Content
+        document.querySelectorAll('[data-id]').forEach(el => {
+            const key = el.getAttribute('data-id');
+            if (translations[lang][key]) {
+                el.innerText = translations[lang][key];
+            }
         });
-        el.addEventListener('mouseleave', () => {
-            follower.style.transform = 'scale(1)';
-            follower.style.background = 'transparent';
-            cursor.style.transform = 'scale(1)';
-        });
-    });
-
-    // Smooth Scroll for Navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+    }
 </script>
 
 </body>
