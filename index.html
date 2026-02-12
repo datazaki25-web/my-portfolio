@@ -32,9 +32,9 @@
             z-index: -1;
         }
 
-        /* Portfolio Media Slots */
+/* Portfolio Media Slots - Optimasi TikTok 9:16 */
         .media-slot {
-            background: #121212;
+            background: #000;
             border: 1px solid #1a1a1a;
             display: flex;
             align-items: center;
@@ -46,12 +46,25 @@
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            border-radius: 4px;
         }
-        .media-slot:hover { border-color: var(--gold); background: #1a1a1a; }
+        
+        /* Memastikan Video TikTok Full Tanpa Ruang Kosong */
+        .media-slot iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+        }
+
+        .media-slot:hover { border-color: var(--gold); }
         .media-slot.tall { aspect-ratio: 9/16; }
         .media-slot.square { aspect-ratio: 1/1; }
         .media-slot.wide { aspect-ratio: 16/9; }
-
+        
         /* Language Switcher */
         .lang-btn { color: #555; transition: 0.3s; cursor: pointer; font-weight: 700; }
         .lang-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
