@@ -11,150 +11,92 @@
 
     <style>
         :root {
-            --neon-gold: #c5a059;
-            --dark-bg: #030303;
-            --glass: rgba(255, 255, 255, 0.02);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --gold: #c5a059;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { background: var(--dark-bg); color: #f0f0f0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        body { background: var(--dark); color: #f0f0f0; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
         .font-aesthetic { font-family: 'Cormorant Garamond', serif; }
-        .font-standard { font-family: 'Montserrat', sans-serif; }
 
-        /* Background Baru: Deep Minimalist Gradient */
-        .main-bg {
+        /* Background Museum */
+        .museum-overlay {
             position: fixed;
             inset: 0;
             background: 
-                radial-gradient(circle at 20% 30%, rgba(197, 160, 89, 0.07) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-                linear-gradient(to bottom, #050505, #0a0a0a);
-            z-index: -2;
-        }
-
-        /* Tekstur halus agar background tidak flat */
-        .bg-grain {
-            position: fixed;
-            inset: 0;
-            opacity: 0.3;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+                radial-gradient(circle at 50% 50%, rgba(197, 160, 89, 0.05) 0%, transparent 80%),
+                linear-gradient(rgba(10,10,10,0.95), rgba(10,10,10,0.95)),
+                url('https://www.transparenttextures.com/patterns/dark-leather.png');
             z-index: -1;
-            pointer-events: none;
-        }
-
-        /* Glass Floating Shapes */
-        .glass-shape {
-            position: absolute;
-            background: var(--glass);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            z-index: -1;
-            animation: float 25s infinite alternate ease-in-out;
-        }
-
-        @keyframes float {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(40px, -60px) rotate(10deg); }
         }
 
         /* Portfolio Media Slots */
         .media-slot {
-            background: rgba(255,255,255,0.01);
-            border: 1px solid var(--glass-border);
+            background: #121212;
+            border: 1px solid #1a1a1a;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 8px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--neon-gold);
-            transition: 0.5s ease;
+            letter-spacing: 1px;
+            color: var(--gold);
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
         }
-        .media-slot:hover { border-color: var(--neon-gold); background: rgba(197, 160, 89, 0.05); }
+        .media-slot:hover { border-color: var(--gold); background: #1a1a1a; }
         .media-slot.tall { aspect-ratio: 9/16; }
         .media-slot.square { aspect-ratio: 1/1; }
         .media-slot.wide { aspect-ratio: 16/9; }
 
         /* Language Switcher */
-        .lang-btn { color: #555; transition: 0.3s; cursor: pointer; font-weight: 700; font-size: 11px; }
-        .lang-btn.active { color: var(--neon-gold); }
+        .lang-btn { color: #555; transition: 0.3s; cursor: pointer; font-weight: 700; }
+        .lang-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
         .lang-en-content { display: none; }
 
-        /* Timeline Style */
-        .exp-line { border-left: 1px solid rgba(197, 160, 89, 0.15); padding-left: 1.5rem; position: relative; }
-        .exp-line::before { 
-            content: ''; position: absolute; left: -5px; top: 0; 
-            width: 9px; height: 9px; background: var(--neon-gold); 
-            border-radius: 50%; 
-        }
-
-        .section-wide { width: 100%; max-width: 1400px; margin: 0 auto; }
-
-        /* Responsivitas Nama (PENTING) */
-        .hero-name {
-            color: #ffffff;
-            line-height: 1;
-            letter-spacing: -0.05em;
-        }
-
-        @media (max-width: 768px) {
-            .hero-name { font-size: 3rem !important; }
-            .exp-line { padding-left: 1.2rem; }
-            nav { padding: 1rem 1.5rem !important; }
-        }
+        /* Experience Border */
+        .exp-line { border-left: 1px solid rgba(197, 160, 89, 0.3); padding-left: 2rem; position: relative; }
+        .exp-line::before { content: ''; position: absolute; left: -4px; top: 0; width: 7px; height: 7px; background: var(--gold); border-radius: 50%; }
     </style>
 </head>
 <body>
 
-<div class="main-bg"></div>
-<div class="bg-grain"></div>
+<div class="museum-overlay"></div>
 
-<div class="glass-shape w-48 h-48 top-40 left-[-50px] opacity-20"></div>
-
-<nav class="fixed top-0 w-full p-6 px-10 flex justify-between items-center z-[100] bg-black/60 backdrop-blur-md border-b border-white/5">
-    <div class="font-aesthetic italic text-2xl tracking-tighter text-[#c5a059]">MZMR<span class="text-white">.</span></div>
-    <div class="flex gap-4 uppercase tracking-widest">
+<nav class="fixed top-0 w-full p-6 flex justify-between items-center z-50 bg-black/80 backdrop-blur-lg border-b border-white/5">
+    <div class="font-aesthetic italic text-2xl tracking-tighter">MZMR<span class="text-[#c5a059]">.</span></div>
+    <div class="flex gap-4 text-[11px] uppercase tracking-widest">
         <span onclick="setLang('id')" id="btn-id" class="lang-btn active">ID</span>
         <span onclick="setLang('en')" id="btn-en" class="lang-btn">EN</span>
     </div>
 </nav>
 
-<section class="min-h-screen flex items-center px-6 md:px-16 lg:px-24 pt-20">
-    <div class="section-wide grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-        
-        <div data-aos="fade-right" class="z-10 order-2 md:order-1">
-            <h1 class="font-standard hero-name text-5xl md:text-7xl lg:text-8xl font-bold uppercase mb-6">
-                M Zaky Mahid <br>Ruwansyah
-            </h1>
-            <div class="w-16 h-1 bg-[#c5a059] mb-8 opacity-80"></div>
-            <p class="text-[10px] md:text-sm tracking-[0.5em] uppercase text-[#c5a059] font-medium">Visual Alchemist • 3D Artist • Animator</p>
-        </div>
-
-        <div class="flex justify-center md:justify-end order-1 md:order-2" data-aos="fade-up">
-            <img src="https://github.com/datazaki25-web/my-portfolio/blob/main/assets/images/foto-zaky-full.png?raw=true" 
-                 alt="M Zaky Mahid Ruwansyah" 
-                 class="max-h-[45vh] md:max-h-[70vh] w-auto drop-shadow-[0_20px_50px_rgba(0,0,0,0.8)]">
-        </div>
-
+<section class="min-h-screen flex flex-col justify-center items-center px-6 pt-20">
+    <div class="mb-8" data-aos="zoom-in">
+        <img src="https://github.com/datazaki25-web/my-portfolio/blob/main/assets/images/foto-zaky-full.png?raw=true" 
+             alt="M Zaky Mahid Ruwansyah" 
+             class="max-h-[65vh] w-auto drop-shadow-[0_0_40px_rgba(197,160,89,0.2)] grayscale hover:grayscale-0 transition duration-1000">
     </div>
+    <h1 class="font-aesthetic text-4xl md:text-7xl font-bold uppercase text-center leading-none">
+        M Zaky Mahid Ruwansyah
+    </h1>
+    <p class="mt-4 text-[10px] md:text-xs tracking-[0.6em] uppercase text-[#c5a059] opacity-70">Visual Alchemist • 3D Artist • Animator</p>
 </section>
 
-<section class="py-20 md:py-32 px-6 md:px-16">
-    <div class="section-wide">
-        <div class="p-8 md:p-20 border border-white/5 bg-white/[0.01] backdrop-blur-sm" data-aos="fade-up">
-            <h2 class="font-aesthetic text-3xl md:text-4xl italic mb-8 text-[#c5a059] lang-id-content">Tentang Saya</h2>
-            <h2 class="font-aesthetic text-3xl md:text-4xl italic mb-8 text-[#c5a059] lang-en-content">About Artist</h2>
-            
-            <p class="lang-id-content text-lg md:text-2xl font-light leading-relaxed opacity-80 max-w-4xl">
-                "Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3d Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi."
-            </p>
-            <p class="lang-en-content text-lg md:text-2xl font-light leading-relaxed opacity-80 max-w-4xl">
-                "A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a profound interest in visual arts and technology."
-            </p>
-        </div>
+<section class="py-24 px-6 md:px-24 max-w-5xl mx-auto border-y border-white/5">
+    <div class="text-center" data-aos="fade-up">
+        <h2 class="font-aesthetic text-4xl italic mb-10 text-[#c5a059] lang-id-content">Tentang Saya</h2>
+        <h2 class="font-aesthetic text-4xl italic mb-10 text-[#c5a059] lang-en-content">About Artist</h2>
+        
+        <p class="lang-id-content text-lg md:text-2xl font-light italic leading-relaxed opacity-80">
+            "Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3d Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."
+        </p>
+        <p class="lang-en-content text-lg md:text-2xl font-light italic leading-relaxed opacity-80">
+            "A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a profound interest in visual arts and technology, combining creativity with technical skills to produce communicative and visually engaging works."
+        </p>
     </div>
 </section>
 
@@ -236,16 +178,31 @@
 
     </div>
 </section>
+
+<footer class="py-32 text-center bg-black/50 border-t border-white/5">
+    <h2 class="font-aesthetic text-5xl mb-6 tracking-tighter italic">Collaborate with Zaky</h2>
+    <a href="mailto:Zakidodi10@gmail.com" class="text-xl tracking-widest text-[#c5a059] border-b border-[#c5a059] pb-2 transition hover:opacity-50">Zakidodi10@gmail.com</a>
+    <p class="mt-24 opacity-20 text-[9px] uppercase tracking-[1em]">M ZAKY MAHID RUWANSYAH &copy; 2026</p>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
     AOS.init({ duration: 1000, once: true });
 
     function setLang(lang) {
         document.getElementById('btn-id').classList.toggle('active', lang === 'id');
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-        const idEls = document.querySelectorAll('.lang-id-content');
-        const enEls = document.querySelectorAll('.lang-en-content');
-        idEls.forEach(el => el.style.display = lang === 'id' ? 'block' : 'none');
-        enEls.forEach(el => el.style.display = lang === 'en' ? 'block' : 'none');
+
+        const idElements = document.querySelectorAll('.lang-id-content');
+        const enElements = document.querySelectorAll('.lang-en-content');
+
+        if(lang === 'id') {
+            idElements.forEach(el => el.style.display = 'block');
+            enElements.forEach(el => el.style.display = 'none');
+        } else {
+            idElements.forEach(el => el.style.display = 'none');
+            enElements.forEach(el => el.style.display = 'block');
+        }
     }
 </script>
 
