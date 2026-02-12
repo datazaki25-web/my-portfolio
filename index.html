@@ -1,52 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M Zaky Mahid Ruwansyah | Grand Gallery Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Montserrat:wght@100;300;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark-museum: #0a0a0a;
+            --card-bg: #111111;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; }
+
+        body {
+            background: var(--dark-museum);
+            color: #f0f0f0;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* MUSEUM WALL BACKGROUND */
+        .museum-bg {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(circle at 50% 30%, rgba(197, 160, 89, 0.05) 0%, transparent 70%),
+                linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
+                url('https://www.transparenttextures.com/patterns/dark-matter.png');
+            z-index: -2;
+        }
+
+        /* SPOTLIGHT EFFECT */
+        .spotlight {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(197, 160, 89, 0.08) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* CURSOR */
+        #cursor { width: 6px; height: 6px; background: var(--gold); border-radius: 50%; position: fixed; z-index: 9999; pointer-events: none; }
+        #cursor-follower { width: 35px; height: 35px; border: 1px solid var(--gold); border-radius: 50%; position: fixed; z-index: 9998; pointer-events: none; transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+
+        .font-aesthetic { font-family: 'Cormorant Garamond', serif; }
+
+        /* TYPOGRAPHY */
+        .hero-title { font-size: clamp(2.5rem, 7vw, 6rem); line-height: 0.9; }
+        .experience-title { font-size: 1.75rem; line-height: 1.2; }
+
+        /* PROFILE PNG STYLING */
+        .profile-container {
+            position: relative;
+            filter: drop-shadow(0 20px 50px rgba(0,0,0,1));
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+        }
+        .profile-img {
+            max-height: 85vh;
+            width: auto;
+            object-fit: contain;
+            /* Pastikan file gambar Anda adalah PNG Transparan */
+        }
+
+        /* COMPONENTS */
+        .portfolio-card {
+            background: var(--card-bg);
+            border: 1px solid #1a1a1a;
+            transition: all 0.5s ease;
+        }
+        .portfolio-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .gold-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            width: 100%;
+            opacity: 0.3;
+        }
+
+        /* CUSTOM SCROLLBAR */
+        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: var(--gold); }
+    </style>
+</head>
+
+<body>
+
+<div class="museum-bg"></div>
+<div class="spotlight" id="spotlight"></div>
+<div id="cursor"></div>
+<div id="cursor-follower"></div>
+
+<nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 mix-blend-difference">
+    <div class="font-aesthetic italic text-2xl font-bold tracking-tighter">
+        MZMR<span class="text-[#c5a059]">.</span>
+    </div>
+    <div class="flex gap-8 text-[9px] tracking-[0.4em] uppercase font-light">
+        <a href="#about" class="hover:text-[#c5a059] transition">The Artist</a>
+        <a href="#experience" class="hover:text-[#c5a059] transition">Chronicles</a>
+        <a href="#work" class="hover:text-[#c5a059] transition">Exhibition</a>
+    </div>
+</nav>
+
+<section class="min-h-screen grid grid-cols-1 lg:grid-cols-2 items-center px-10 lg:px-24 pt-24 overflow-hidden">
+    <div data-aos="fade-right" data-aos-duration="1200">
+        <p class="font-aesthetic italic text-2xl text-[#c5a059] mb-4">Master of Visual Arts</p>
+        <h1 class="hero-title font-aesthetic font-bold uppercase mb-6">
+            M ZAKY MAHID<br>
+            <span class="italic font-light text-[#c5a059]">RUWANSYAH</span>
+        </h1>
+        <div class="border-l-2 border-[#c5a059] pl-6 py-2">
+            <p class="text-[11px] tracking-[0.4em] uppercase opacity-60 mb-2">DKV Multimedia Student</p>
+            <p class="text-[11px] tracking-[0.4em] uppercase opacity-40">Visual Creator • 3D Artist • Animator</p>
+        </div>
+    </div>
+
+    <div class="profile-container mt-12 lg:mt-0" data-aos="fade-up" data-aos-duration="1500">
+        <img src="assets/images/foto-zaky.png" alt="M Zaky Mahid Ruwansyah" class="profile-img">
+    </div>
+</section>
+
+<section id="about" class="py-32 px-10 lg:px-24 bg-black/30">
+    <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+        <h2 class="font-aesthetic text-5xl italic mb-10 text-[#c5a059]">Artist Statement</h2>
+        <p class="font-light leading-relaxed text-lg lg:text-2xl opacity-80 italic">
+            "Seorang yang fokus bidang <span class="text-[#c5a059] font-normal">kreator visual</span> yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi, serta terbiasa menggabungkan kreativitas dengan keterampilan teknis untuk menghasilkan karya yang komunikatif dan menarik secara visual."
+        </p>
+        <div class="gold-line mt-12"></div>
+    </div>
+</section>
+
 <section id="experience" class="py-32 px-10 lg:px-24">
     <div class="max-w-6xl mx-auto">
-        <div class="flex items-center gap-4 mb-16" data-aos="fade-right">
-            <div class="w-12 h-[1px] bg-[#c5a059]"></div>
-            <h2 class="font-aesthetic text-5xl italic">Experience Chronicles</h2>
+        <div class="flex items-center gap-6 mb-20" data-aos="fade-right">
+            <h2 class="font-aesthetic text-6xl italic">Chronicles</h2>
+            <div class="flex-1 h-[1px] bg-gradient-to-r from-[#c5a059] to-transparent opacity-30"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             
-            <div class="portfolio-card p-8 relative overflow-hidden group" data-aos="fade-up">
-                <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Des 2024 – Jul 2025</span>
-                <h3 class="font-aesthetic text-3xl mt-2 group-hover:text-[#c5a059] transition">Staf Kreatif – Graphic Design</h3>
-                <p class="text-[11px] opacity-40 uppercase tracking-widest mt-1">PT Kumata Indonesia – Bandung</p>
-                <div class="gold-line !my-4 opacity-30"></div>
-                <p class="text-sm leading-relaxed opacity-70 font-light">
-                    Mendesain 100+ konten visual Instagram feed & story. Berkolaborasi dengan tim pemasaran untuk kampanye visual dan menyusun jadwal konten mingguan serta template desain untuk efisiensi produksi.
-                </p>
+            <div class="portfolio-card p-8 group" data-aos="fade-up">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Des 2024 – Jul 2025</span>
+                    <span class="font-aesthetic italic opacity-20 text-4xl">01</span>
+                </div>
+                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Staf Kreatif – Graphic Design</h3>
+                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">PT Kumata Indonesia – Bandung</p>
+                <p class="text-sm leading-relaxed opacity-60 font-light">Mendesain 100+ konten visual Instagram feed & story sesuai identitas merek. Berkolaborasi dengan tim pemasaran untuk kampanye visual dan mengelola efisiensi produksi melalui template desain.</p>
             </div>
 
-            <div class="portfolio-card p-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
-                <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Agu – Okt 2023</span>
-                <h3 class="font-aesthetic text-3xl mt-2 group-hover:text-[#c5a059] transition">Staf Kreatif – Video Creator</h3>
-                <p class="text-[11px] opacity-40 uppercase tracking-widest mt-1">PT Ramoti Indonesia – Bogor</p>
-                <div class="gold-line !my-4 opacity-30"></div>
-                <p class="text-sm leading-relaxed opacity-70 font-light">
-                    Bertanggung jawab atas konten video promosi digital. Mahir menggunakan Adobe Premiere Pro, After Effects, dan CapCut untuk Reels, YT Shorts, dan TikTok guna meningkatkan strategi konten.
-                </p>
+            <div class="portfolio-card p-8 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Agu – Okt 2023</span>
+                    <span class="font-aesthetic italic opacity-20 text-4xl">02</span>
+                </div>
+                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Staf Kreatif – Video Creator</h3>
+                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">PT Ramoti Indonesia – Bogor</p>
+                <p class="text-sm leading-relaxed opacity-60 font-light">Bertanggung jawab penuh dalam produksi video promosi digital (Reels, TikTok, YT Shorts). Ahli dalam Adobe Premiere Pro & After Effects untuk menciptakan transisi dan grafis yang memikat.</p>
             </div>
 
-            <div class="portfolio-card p-8 relative overflow-hidden group" data-aos="fade-up">
-                <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Jan – Apr 2020</span>
-                <h3 class="font-aesthetic text-3xl mt-2 group-hover:text-[#c5a059] transition">Internship – Animator</h3>
-                <p class="text-[11px] opacity-40 uppercase tracking-widest mt-1">PT Inovasi Karsa Nusantara – Tangerang</p>
-                <div class="gold-line !my-4 opacity-30"></div>
-                <p class="text-sm leading-relaxed opacity-70 font-light">
-                    Membuat keyframe & tweening untuk 45+ scene film animasi <b>T-JTown (NET TV)</b> menggunakan Toon Boom Harmony, menjaga kontinuitas adegan bersama tim storyboard.
-                </p>
+            <div class="portfolio-card p-8 group" data-aos="fade-up">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Jan – Apr 2020</span>
+                    <span class="font-aesthetic italic opacity-20 text-4xl">03</span>
+                </div>
+                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Internship – Animator</h3>
+                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">PT Inovasi Karsa Nusantara – Tangerang</p>
+                <p class="text-sm leading-relaxed opacity-60 font-light">Produksi film animasi <b>T-JTown (NET TV)</b>. Membuat keyframe dan tweening untuk 45+ scene menggunakan Toon Boom Harmony dengan fokus pada kualitas dan kontinuitas storyboard.</p>
             </div>
 
-            <div class="portfolio-card p-8 relative overflow-hidden group" data-aos="fade-up" data-aos-delay="100">
-                <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Feb – Apr 2018</span>
-                <h3 class="font-aesthetic text-3xl mt-2 group-hover:text-[#c5a059] transition">Internship – Video Editor</h3>
-                <p class="text-[11px] opacity-40 uppercase tracking-widest mt-1">DISKOMINFO Kabupaten Bogor</p>
-                <div class="gold-line !my-4 opacity-30"></div>
-                <p class="text-sm leading-relaxed opacity-70 font-light">
-                    Memproduksi konten visual media sosial resmi, mendesain layout majalah, dan mengadaptasi desain untuk berbagai format digital serta mengelola arsip media visual.
-                </p>
+            <div class="portfolio-card p-8 group" data-aos="fade-up" data-aos-delay="100">
+                <div class="flex justify-between items-start mb-6">
+                    <span class="text-[10px] text-[#c5a059] tracking-[0.3em] uppercase">Feb – Apr 2018</span>
+                    <span class="font-aesthetic italic opacity-20 text-4xl">04</span>
+                </div>
+                <h3 class="experience-title font-aesthetic mb-2 group-hover:text-[#c5a059] transition">Internship – Video Editor</h3>
+                <p class="text-[10px] opacity-40 uppercase tracking-widest mb-6">DISKOMINFO Kabupaten Bogor</p>
+                <p class="text-sm leading-relaxed opacity-60 font-light">Fokus pada publikasi visual pemerintah. Membuat Reels informatif, desain layout majalah, dan mengelola arsip media visual untuk berbagai platform digital dan cetak.</p>
             </div>
 
         </div>
     </div>
 </section>
+
+<section id="work" class="py-32 px-10 lg:px-24">
+    <div class="flex justify-between items-end mb-20">
+        <h2 class="font-aesthetic text-6xl italic">The Exhibition</h2>
+        <p class="text-[10px] tracking-[0.5em] uppercase opacity-30 hidden md:block">Selected Visual Artifacts</p>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-10">
+        
+        <div class="md:col-span-8 portfolio-card group overflow-hidden" data-aos="fade-right">
+            <div class="aspect-video overflow-hidden">
+                <img src="assets/images/work-1.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
+            </div>
+            <div class="p-8 flex justify-between items-center">
+                <div>
+                    <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">Motion Graphics</p>
+                    <h3 class="font-aesthetic text-3xl">Visual Narrative Explainer</h3>
+                </div>
+                <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#c5a059] transition">→</div>
+            </div>
+        </div>
+
+        <div class="md:col-span-4 portfolio-card group overflow-hidden md:mt-12" data-aos="fade-left">
+            <div class="aspect-[3/4] overflow-hidden">
+                <img src="assets/images/work-2.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
+            </div>
+            <div class="p-8">
+                <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">Branding</p>
+                <h3 class="font-aesthetic text-3xl">Identity System</h3>
+            </div>
+        </div>
+
+        <div class="md:col-span-5 portfolio-card group overflow-hidden" data-aos="fade-up">
+            <div class="aspect-square overflow-hidden">
+                <img src="assets/images/work-3.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
+            </div>
+            <div class="p-8">
+                <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">3D Artist</p>
+                <h3 class="font-aesthetic text-3xl">Environmental Art</h3>
+            </div>
+        </div>
+
+        <div class="md:col-span-7 portfolio-card group overflow-hidden md:-mt-24" data-aos="fade-up" data-aos-delay="200">
+            <div class="aspect-video overflow-hidden">
+                <img src="assets/images/work-4.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition duration-1000 group-hover:scale-105">
+            </div>
+            <div class="p-8">
+                <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-1">Film</p>
+                <h3 class="font-aesthetic text-3xl">Cinematic Video Production</h3>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<footer id="contact" class="py-40 text-center border-t border-white/5 bg-black/50">
+    <div data-aos="zoom-in">
+        <p class="font-aesthetic italic text-2xl mb-4 text-[#c5a059]">Available for New Commissions</p>
+        <h2 class="hero-title font-aesthetic mb-10 uppercase font-bold">Start a Project</h2>
+        <a href="mailto:muhzakymah@gmail.com" class="text-xl tracking-[0.3em] border-b-2 border-[#c5a059] pb-4 hover:opacity-50 transition">
+            muhzakymah@gmail.com
+        </a>
+    </div>
+    
+    <div class="mt-32 opacity-20 text-[9px] uppercase tracking-[0.8em]">
+        M Zaky Mahid Ruwansyah &copy; 2026 • Visual Alchemist
+    </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init({ duration: 1000, once: true });
+
+    // Custom Cursor & Spotlight Logic
+    const cursor = document.getElementById("cursor");
+    const follower = document.getElementById("cursor-follower");
+    const spotlight = document.getElementById("spotlight");
+
+    document.addEventListener("mousemove", e => {
+        const x = e.clientX;
+        const y = e.clientY;
+
+        // Smooth Cursor
+        gsap.to(cursor, { x: x, y: y, duration: 0.1 });
+        gsap.to(follower, { x: x - 17, y: y - 17, duration: 0.3 });
+        
+        // Spotlight movement
+        spotlight.style.setProperty('--x', x + 'px');
+        spotlight.style.setProperty('--y', y + 'px');
+    });
+
+    // Interaction Hover
+    const interactiveElements = document.querySelectorAll('a, .portfolio-card, button');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            follower.style.transform = 'scale(1.8)';
+            follower.style.background = 'rgba(197, 160, 89, 0.1)';
+            cursor.style.transform = 'scale(0)';
+        });
+        el.addEventListener('mouseleave', () => {
+            follower.style.transform = 'scale(1)';
+            follower.style.background = 'transparent';
+            cursor.style.transform = 'scale(1)';
+        });
+    });
+
+    // Smooth Scroll for Navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
