@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M ZAKY MAHID RUWANSYAH | Visual Artist Portfolio</title>
+    <title>M Zaky Mahid Ruwansyah | Visual Artist Portfolio</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,700;1,300;1,700&family=Montserrat:wght@100;300;500;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -32,9 +32,9 @@
             z-index: -1;
         }
 
-        /* Portfolio Media Slots - Optimasi TikTok 9:16 */
+        /* Portfolio Media Slots */
         .media-slot {
-            background: #000;
+            background: #121212;
             border: 1px solid #1a1a1a;
             display: flex;
             align-items: center;
@@ -46,21 +46,8 @@
             transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
-            border-radius: 4px;
         }
-        
-        /* Memastikan Video TikTok Full Tanpa Ruang Kosong */
-        .media-slot iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-        }
-
-        .media-slot:hover { border-color: var(--gold); }
+        .media-slot:hover { border-color: var(--gold); background: #1a1a1a; }
         .media-slot.tall { aspect-ratio: 9/16; }
         .media-slot.square { aspect-ratio: 1/1; }
         .media-slot.wide { aspect-ratio: 16/9; }
@@ -87,22 +74,25 @@
     </div>
 </nav>
 
-<section class="min-h-screen flex items-center px-4 md:px-10 max-w-[1400px] mx-auto pt-20">
-    <div class="flex flex-col md:flex-row items-center w-full justify-between gap-6 md:gap-12">
-        <div class="w-full md:w-3/5 text-left" data-aos="fade-right">
-            <h1 class="font-aesthetic text-[10vw] md:text-8xl font-bold uppercase leading-[0.9] tracking-tighter">
-                M ZAKY MAHID <br> RUWANSYAH
+<section class="min-h-screen flex items-center px-6 md:px-20 max-w-7xl mx-auto pt-20">
+    <div class="flex flex-col-reverse md:flex-row items-center w-full justify-between gap-12">
+        
+        <div class="w-full md:w-1/2 text-center md:text-left" data-aos="fade-right">
+            <h1 class="font-aesthetic text-5xl md:text-8xl font-bold uppercase leading-tight">
+                M Zaky Mahid <br class="hidden md:block"> Ruwansyah
             </h1>
-            <div class="h-[2px] w-12 md:w-20 bg-[#c5a059] my-4 md:my-8"></div>
-            <p class="text-[8px] md:text-sm tracking-[0.4em] md:tracking-[0.6em] uppercase text-[#c5a059] opacity-70">
+            <div class="h-1 w-20 bg-[#c5a059] my-6 mx-auto md:ml-0"></div>
+            <p class="text-[10px] md:text-sm tracking-[0.6em] uppercase text-[#c5a059] opacity-70">
                 Visual Alchemist • 3D Artist • Animator
             </p>
         </div>
-        <div class="w-full md:w-2/5 flex justify-center md:justify-end" data-aos="zoom-in">
+
+        <div class="w-full md:w-1/2 flex justify-center md:justify-end" data-aos="zoom-in">
             <img src="https://github.com/datazaki25-web/my-portfolio/blob/main/assets/images/foto-zaky-full.png?raw=true" 
                  alt="M Zaky Mahid Ruwansyah" 
-                 class="max-h-[50vh] md:max-h-[80vh] w-auto drop-shadow-[0_0_50px_rgba(197,160,89,0.15)] transition duration-700">
+                 class="max-h-[60vh] md:max-h-[75vh] w-auto drop-shadow-[0_0_50px_rgba(197,160,89,0.15)] transition duration-700">
         </div>
+
     </div>
 </section>
 
@@ -110,46 +100,51 @@
     <div class="text-center md:text-left" data-aos="fade-up">
         <h2 class="font-aesthetic text-4xl italic mb-10 text-[#c5a059] lang-id-content">Tentang Saya</h2>
         <h2 class="font-aesthetic text-4xl italic mb-10 text-[#c5a059] lang-en-content">About Artist</h2>
+        
         <p class="lang-id-content text-lg md:text-3xl font-light italic leading-relaxed opacity-80 max-w-4xl">
-            "Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3D Artist."
+            "Seorang yang fokus bidang kreator visual yang sejak 2016 aktif belajar di bidang desain grafis, animasi 2D, ilustrasi, editing video, dan 3d Artist. Saya memiliki ketertarikan mendalam terhadap seni visual dan teknologi."
         </p>
         <p class="lang-en-content text-lg md:text-3xl font-light italic leading-relaxed opacity-80 max-w-4xl">
-            "A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016."
+            "A visual creator focused on graphic design, 2D animation, illustration, video editing, and 3D Art since 2016. I have a profound interest in visual arts and technology."
         </p>
     </div>
 </section>
 
-<section class="py-24 px-6 md:px-10 max-w-[1400px] mx-auto">
-    <h2 class="font-aesthetic text-5xl md:text-6xl italic mb-20 lang-id-content tracking-tighter">Riwayat Eksibisi</h2>
-    <h2 class="font-aesthetic text-5xl md:text-6xl italic mb-20 lang-en-content tracking-tighter">Exhibition History</h2>
+<section class="py-24 px-6 md:px-24 max-w-7xl mx-auto">
+    <h2 class="font-aesthetic text-5xl italic mb-20 lang-id-content tracking-tighter">Riwayat Eksibisi</h2>
+    <h2 class="font-aesthetic text-5xl italic mb-20 lang-en-content tracking-tighter">Exhibition History</h2>
 
     <div class="space-y-32">
-        
         <div class="exp-line" data-aos="fade-up">
             <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2 font-bold">Desember 2024 – Juli 2025</p>
-            <h3 class="font-aesthetic text-3xl md:text-4xl italic">Staf Kreatif – Video Creator</h3>
+            <h3 class="font-aesthetic text-3xl italic">Staf Kreatif – Video Creator</h3>
             <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] mb-6">PT Inovasi Karsa Nusantara – Tangerang, Indonesia</p>
-            <div class="lang-id-content text-sm md:text-base opacity-60 max-w-4xl mb-10 leading-relaxed">
-                Bertanggung jawab membuat konten video promosi digital dan media sosial.
+            <div class="lang-id-content text-sm opacity-60 max-w-2xl mb-8">
+                Bertanggung jawab membuat konten video promosi digital dan media sosial. Mahir menggunakan Adobe Premiere Pro, After Effects, dan CapCut.
+            </div>
+            <div class="lang-en-content text-sm opacity-60 max-w-2xl mb-8">
+                Responsible for creating digital promotional videos and social media content. Proficient in Adobe Premiere Pro and After Effects.
             </div>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-                <div class="media-slot tall">
-                    <iframe src="https://www.tiktok.com/player/v1/7522047484873510200?rel=0" allowfullscreen></iframe>
-                </div>
-                <div class="media-slot tall">TikTok 2</div>
-                <div class="media-slot tall">TikTok 3</div>
-                <div class="media-slot tall">TikTok 4</div>
-                <div class="media-slot tall">TikTok 5</div>
-                <div class="media-slot tall">TikTok 6</div>
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-3">
+                <div class="media-slot tall">TikTok 1</div><div class="media-slot tall">TikTok 2</div>
+                <div class="media-slot tall">TikTok 3</div><div class="media-slot tall">TikTok 4</div>
+                <div class="media-slot tall">TikTok 5</div><div class="media-slot tall">TikTok 6</div>
             </div>
         </div>
 
         <div class="exp-line" data-aos="fade-up">
             <p class="text-[10px] text-[#c5a059] tracking-widest uppercase mb-2 font-bold">Agustus – Oktober 2023</p>
-            <h3 class="font-aesthetic text-3xl md:text-4xl italic">Internship – Video Editor</h3>
+            <h3 class="font-aesthetic text-3xl italic">Internship – Video Editor</h3>
             <p class="text-[10px] opacity-40 uppercase tracking-[0.3em] mb-6">DISKOMINFO Kabupaten Bogor</p>
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
+            <div class="lang-id-content text-sm opacity-60 max-w-2xl mb-8">
+                Merencanakan, memproduksi, dan mempublikasikan konten visual media sosial resmi pemerintah.
+            </div>
+            <div class="lang-en-content text-sm opacity-60 max-w-2xl mb-8">
+                Planned and produced official social media content for government communication.
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-3">
                 <div class="media-slot tall">Reels 1</div><div class="media-slot tall">Reels 2</div>
                 <div class="media-slot tall">Reels 3</div><div class="media-slot tall">Reels 4</div>
                 <div class="media-slot wide col-span-2">2 Buku Majalah</div>
@@ -159,11 +154,9 @@
 </section>
 
 <footer class="py-32 text-center bg-black/50 border-t border-white/5">
-    <div class="max-w-[1400px] mx-auto px-6">
-        <h2 class="font-aesthetic text-5xl md:text-7xl mb-10 tracking-tighter italic">Collaborate with Zaky</h2>
-        <a href="mailto:Zakidodi10@gmail.com" class="text-xl md:text-3xl tracking-widest text-[#c5a059] border-b-2 border-[#c5a059] pb-2 transition hover:opacity-50 inline-block">Zakidodi10@gmail.com</a>
-        <p class="mt-24 opacity-20 text-[10px] uppercase tracking-[1em]">M ZAKY MAHID RUWANSYAH &copy; 2026</p>
-    </div>
+    <h2 class="font-aesthetic text-5xl mb-6 tracking-tighter italic">Collaborate with Zaky</h2>
+    <a href="mailto:Zakidodi10@gmail.com" class="text-xl tracking-widest text-[#c5a059] border-b border-[#c5a059] pb-2 transition hover:opacity-50">Zakidodi10@gmail.com</a>
+    <p class="mt-24 opacity-20 text-[9px] uppercase tracking-[1em]">M ZAKY MAHID RUWANSYAH &copy; 2026</p>
 </footer>
 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -173,8 +166,10 @@
     function setLang(lang) {
         document.getElementById('btn-id').classList.toggle('active', lang === 'id');
         document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
         const idElements = document.querySelectorAll('.lang-id-content');
         const enElements = document.querySelectorAll('.lang-en-content');
+
         if(lang === 'id') {
             idElements.forEach(el => el.style.display = 'block');
             enElements.forEach(el => el.style.display = 'none');
